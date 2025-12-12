@@ -20,7 +20,7 @@ const Details = () => {
     }
 
     // Status Bar Logic
-    const steps = ['Aberto', 'Em Análise', 'Resultado Preliminar', 'Finalizado'];
+    const steps = ['Período de Inscrição', 'Em Processo', 'Encerrado'];
     const currentStepIndex = steps.indexOf(call.status) !== -1 ? steps.indexOf(call.status) : 0; // Simplified logic for demo
 
     return (
@@ -193,9 +193,24 @@ const Details = () => {
                             </div>
                         </div>
 
-                        <button className="w-full mt-6 bg-uece-green text-white font-semibold py-3 rounded-lg shadow-lg shadow-uece-green/30 hover:bg-green-800 transition-all hover:scale-[1.02] active:scale-[0.98]">
-                            Inscrever-se Agora
-                        </button>
+                        {/* Subscription Button */}
+                        <div className="flex justify-end pt-6">
+                            {call.status === 'Período de Inscrição' && (
+                                <a
+                                    href={call.subscriptionLink || '#'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${call.subscriptionLink
+                                        ? 'bg-uece-green hover:bg-green-800 hover:shadow-xl hover:-translate-y-1'
+                                        : 'bg-gray-400 cursor-not-allowed'
+                                        }`}
+                                    onClick={(e) => !call.subscriptionLink && e.preventDefault()}
+                                >
+                                    {call.subscriptionLink ? 'Inscrever-se Agora' : 'Link indisponível'}
+                                    <ExternalLink className="w-5 h-5" />
+                                </a>
+                            )}
+                        </div>
                     </div>
 
                     <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">

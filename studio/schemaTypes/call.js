@@ -55,9 +55,9 @@ export const call = {
             type: 'string',
             options: {
                 list: [
-                    { title: 'Aberto', value: 'Aberto' },
-                    { title: 'Em Análise', value: 'Em Análise' },
-                    { title: 'Finalizado', value: 'Finalizado' },
+                    { title: 'Período de Inscrição', value: 'Período de Inscrição' },
+                    { title: 'Em Processo', value: 'Em Processo' },
+                    { title: 'Encerrado', value: 'Encerrado' },
                 ]
             }
         },

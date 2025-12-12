@@ -33,9 +33,9 @@ const Dashboard = () => {
 
     const getStatusColor = (status) => {
         switch (status) {
-            case 'Aberto': return 'bg-green-100 text-green-700 border-green-200';
-            case 'Em Análise': return 'bg-amber-100 text-amber-700 border-amber-200';
-            case 'Finalizado': return 'bg-gray-100 text-gray-700 border-gray-200';
+            case 'Período de Inscrição': return 'bg-green-100 text-green-700 border-green-200';
+            case 'Em Processo': return 'bg-amber-100 text-amber-700 border-amber-200';
+            case 'Encerrado': return 'bg-gray-100 text-gray-700 border-gray-200';
             default: return 'bg-gray-100 text-gray-700';
         }
     };
@@ -127,9 +127,9 @@ const Dashboard = () => {
                                 onChange={(e) => setSelectedStatus(e.target.value)}
                             >
                                 <option value="Todos">Todos os Status</option>
-                                <option value="Aberto">Abertos</option>
-                                <option value="Em Análise">Em Análise</option>
-                                <option value="Finalizado">Finalizados</option>
+                                <option value="Período de Inscrição">Inscrições Abertas</option>
+                                <option value="Em Processo">Em Processo</option>
+                                <option value="Encerrado">Encerrados</option>
                             </select>
                         </div>
                     </div>
@@ -187,7 +187,7 @@ const Dashboard = () => {
                                             <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
                                         </div>
 
-                                        {call.status === 'Aberto' && (
+                                        {call.status === 'Período de Inscrição' && (
                                             <button className="bg-uece-green text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-800 transition-colors shadow-sm hover:shadow-md z-10 relative">
                                                 Inscreva-se
                                             </button>
