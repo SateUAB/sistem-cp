@@ -140,7 +140,7 @@ const Dashboard = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
                     <Filter className="w-5 h-5 text-uece-green" />
-                    Editais Encontrados ({filteredCalls.length})
+                    Chamadas Públicas ({filteredCalls.length})
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -200,7 +200,7 @@ const Dashboard = () => {
 
                     {filteredCalls.length === 0 && (
                         <div className="col-span-full text-center py-12">
-                            <p className="text-gray-500 text-lg">Nenhum edital encontrado com os filtros selecionados.</p>
+                            <p className="text-gray-500 text-lg">Nenhuma chamada pública encontrada com os filtros selecionados.</p>
                         </div>
                     )}
                 </div>
