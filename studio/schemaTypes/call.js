@@ -20,6 +20,12 @@ export const call = {
             type: 'text',
         },
         {
+            name: 'subscriptionLink',
+            title: 'Link de Inscrição',
+            description: 'Link para o Google Forms ou sistema de inscrição.',
+            type: 'url',
+        },
+        {
             name: 'type',
             title: 'Tipo de Seleção',
             type: 'string',

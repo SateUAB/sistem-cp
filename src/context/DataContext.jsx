@@ -21,6 +21,7 @@ export const DataProvider = ({ children }) => {
         type,
         courseType,
         status,
+        subscriptionLink,
         vacancies,
         remuneration,
         startDate,
