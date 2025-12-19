@@ -41,8 +41,8 @@ const Details = () => {
                                 </span>
                                 <span className="text-gray-500 text-sm font-medium">{call.type}</span>
                             </div>
-                            <h1 className="text-3xl font-bold text-gray-900 mb-4">{call.title}</h1>
-                            <p className="text-lg text-gray-600 max-w-3xl whitespace-pre-wrap leading-relaxed text-justify">{call.description}</p>
+                            <h1 className="text-2xl font-bold text-gray-900 mb-4">{call.title}</h1>
+                            <p className="text-base text-gray-600 max-w-3xl whitespace-pre-wrap leading-relaxed text-justify">{call.description}</p>
                         </div>
                     </div>
 
@@ -107,8 +107,8 @@ const Details = () => {
                                                 Destaque
                                             </span>
                                         </div>
-                                        <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>
-                                        <p className="text-sm text-gray-500 mb-4">Publicado em: {item.date}</p>
+                                        <h3 className="text-base font-bold text-gray-900 mb-1">{item.title}</h3>
+                                        <p className="text-xs text-gray-500 mb-4">Publicado em: {item.date}</p>
                                         <a
                                             href={item.url}
                                             target="_blank"
@@ -132,8 +132,8 @@ const Details = () => {
 
                     {/* Timeline */}
                     <div className="pt-8 mb-12 border-t border-gray-100">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <Calendar className="w-6 h-6 text-uece-green" />
+                        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                            <Calendar className="w-5 h-5 text-uece-green" />
                             Resultados e Fases
                         </h2>
 
@@ -161,7 +161,7 @@ const Details = () => {
                                                 <span className="text-xs font-bold text-uece-green uppercase tracking-wide mb-1 block">
                                                     {item.date}
                                                 </span>
-                                                <h3 className="text-lg font-bold text-gray-900 group-hover:text-uece-green transition-colors">
+                                                <h3 className="text-base font-bold text-gray-900 group-hover:text-uece-green transition-colors">
                                                     {item.title}
                                                 </h3>
                                             </div>
@@ -185,12 +185,12 @@ const Details = () => {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
                             <div>
-                                <p className="font-bold text-gray-900 text-lg">Francisco Fábio Castelo Branco</p>
-                                <p className="text-gray-500">Coordenador da UAB</p>
+                                <p className="font-bold text-gray-900 text-base">Francisco Fábio Castelo Branco</p>
+                                <p className="text-gray-500 text-sm">Coordenador da UAB</p>
                             </div>
                             <div>
-                                <p className="font-bold text-gray-900 text-lg">João Rameres Regis</p>
-                                <p className="text-gray-500">Coordenador da SATE</p>
+                                <p className="font-bold text-gray-900 text-base">João Rameres Regis</p>
+                                <p className="text-gray-500 text-sm">Coordenador da SATE</p>
                             </div>
                         </div>
                     </div>
