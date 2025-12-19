@@ -125,24 +125,10 @@ const Details = () => {
                     )}
 
                     {/* Warning Box */}
-                    <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-8 rounded-r-lg">
-                        <div className="flex items-start gap-3">
-                            <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
-                            <div className="text-sm text-amber-900">
-                                <p className="font-bold mb-1">ATENÇÃO:</p>
-                                <p className="leading-relaxed">
-                                    Para evitar complicações durante o preenchimento da ficha, o formulário de inscrição somente pode ser acessado com um
-                                    <strong> email do domínio Gmail</strong>, com todos os arquivos no formato <strong>PDF</strong> e que cada arquivo seja menor que <strong>1MB</strong>.
-                                </p>
-                                <p className="mt-2 text-amber-700">
-                                    Dúvidas? Entre em contato: <a href="mailto:cp.sate@uece.br" className="underline font-semibold hover:text-amber-900">cp.sate@uece.br</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+
 
                     {/* Description */}
-                    <p className="text-lg text-gray-600 max-w-3xl whitespace-pre-wrap leading-relaxed text-justify mb-12">{call.description}</p>
+
 
                     {/* Timeline */}
                     <div className="pt-8 mb-12 border-t border-gray-100">
@@ -275,17 +261,26 @@ const Details = () => {
                     </div>
 
                     {/* Help Box */}
+                    {/* Help & Warning Box merged */}
                     <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                        <div className="flex items-start gap-3">
+                        <div className="flex items-start gap-3 mb-4">
                             <div className="bg-blue-100 p-2 rounded-full text-blue-600">
                                 <AlertTriangle className="w-5 h-5" />
                             </div>
                             <div>
-                                <h4 className="font-semibold text-blue-900 mb-1">Precisa de Ajuda?</h4>
-                                <p className="text-sm text-blue-700 mb-3">
-                                    Se tiver dúvidas sobre o edital, entre em contato com nosso suporte:
+                                <h4 className="font-semibold text-blue-900 mb-1">Atenção & Ajuda</h4>
+                                <p className="text-sm text-blue-700 leading-relaxed">
+                                    Para evitar erros na inscrição:
                                 </p>
-                                <a href="mailto:cp.sate@uece.br" className="text-sm font-bold text-blue-800 hover:text-blue-900 hover:underline flex items-center gap-1">
+                                <ul className="list-disc list-inside text-sm text-blue-800 font-medium mt-1 mb-3 space-y-1">
+                                    <li>Use email <strong>Gmail</strong></li>
+                                    <li>Arquivos em <strong>PDF</strong></li>
+                                    <li>Máximo <strong>1MB</strong> por arquivo</li>
+                                </ul>
+                                <p className="text-sm text-blue-700">
+                                    Dúvidas? Contate o suporte:
+                                </p>
+                                <a href="mailto:cp.sate@uece.br" className="text-sm font-bold text-blue-800 hover:text-blue-900 hover:underline flex items-center gap-1 mt-1">
                                     cp.sate@uece.br <ExternalLink className="w-3 h-3" />
                                 </a>
                             </div>
