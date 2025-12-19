@@ -178,7 +178,7 @@ const Details = () => {
                                 <FileText className="w-5 h-5 text-uece-green mt-0.5" />
                                 <div>
                                     <p className="text-sm text-gray-500">Número do Edital</p>
-                                    <p className="font-medium text-gray-900">{call.editalNumber}</p>
+                                    <p className="font-medium text-gray-900">{call.id}</p>
                                 </div>
                             </div>
 
