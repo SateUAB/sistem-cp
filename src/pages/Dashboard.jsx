@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Briefcase, BookOpen, Users, ArrowRight } from 'lucide-react';
+import { Search, Filter, Briefcase, BookOpen, Users, ArrowRight, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -64,6 +64,16 @@ const Dashboard = () => {
                             Acompanhe as chamadas públicas para tutores, professores e equipe de apoio
                             para os cursos a distância da Universidade Estadual do Ceará.
                         </p>
+
+                        <a
+                            href="https://www.uece.br/sate/home/servicos-e-informativos/chamadas-publicas/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-600 rounded-lg hover:border-uece-green hover:text-uece-green transition-all shadow-sm text-sm font-medium"
+                        >
+                            Acessar Chamadas Anteriores
+                            <ExternalLink className="w-4 h-4" />
+                        </a>
                     </motion.div>
                 </div>
             </div>
@@ -200,7 +210,19 @@ const Dashboard = () => {
 
                     {filteredCalls.length === 0 && (
                         <div className="col-span-full text-center py-12">
-                            <p className="text-gray-500 text-lg">Nenhuma chamada pública encontrada com os filtros selecionados.</p>
+                            <p className="text-gray-500 text-lg mb-4">Nenhuma chamada pública encontrada com os filtros selecionados.</p>
+                            <p className="text-gray-500">
+                                Procurando por chamadas antigas?{' '}
+                                <a
+                                    href="https://www.uece.br/sate/home/servicos-e-informativos/chamadas-publicas/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-uece-green font-medium hover:underline inline-flex items-center gap-1"
+                                >
+                                    Acesse o sistema anterior
+                                    <ExternalLink className="w-3 h-3" />
+                                </a>
+                            </p>
                         </div>
                     )}
                 </div>
