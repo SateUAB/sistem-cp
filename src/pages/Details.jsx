@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Users, DollarSign, FileText, Download, CheckCircle, Circle, Briefcase, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Calendar, Users, DollarSign, FileText, Download, CheckCircle, Circle, Briefcase, ExternalLink, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useData } from '../context/DataContext';
 
@@ -121,129 +121,136 @@ const Details = () => {
                         </div>
                     )}
 
-                    <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        <Calendar className="w-5 h-5 text-uece-green" />
-                        Resultados e Fases
-                    </h2>
-
-                    <div className="relative border-l border-gray-200 ml-3 space-y-8 pl-10 pb-4">
-                        {call.timeline.filter(t => !t.isFeatured).map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                className="relative group"
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="relative group"
                             >
-                                {/* Modern Dot Indicator */}
-                                <div className="absolute -left-[45px] top-3 h-3 w-3 rounded-full bg-uece-green shadow-[0_0_0_4px_rgba(230,248,235,1)] group-hover:shadow-[0_0_0_6px_rgba(230,248,235,1)] transition-all duration-300"></div>
+                    {/* Modern Dot Indicator */}
+                    <div className="absolute -left-[45px] top-3 h-3 w-3 rounded-full bg-uece-green shadow-[0_0_0_4px_rgba(230,248,235,1)] group-hover:shadow-[0_0_0_6px_rgba(230,248,235,1)] transition-all duration-300"></div>
 
-                                {/* Minimalist Card */}
-                                <a
-                                    href={item.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block bg-white p-5 rounded-xl border border-transparent hover:border-gray-100 hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1"
-                                >
-                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                                        <div>
-                                            <span className="text-xs font-bold text-uece-green uppercase tracking-wide mb-1 block">
-                                                {item.date}
-                                            </span>
-                                            <h3 className="text-lg font-bold text-gray-900 group-hover:text-uece-green transition-colors">
-                                                {item.title}
-                                            </h3>
-                                        </div>
+                    {/* Minimalist Card */}
+                    <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block bg-white p-5 rounded-xl border border-transparent hover:border-gray-100 hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1"
+                    >
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div>
+                                <span className="text-xs font-bold text-uece-green uppercase tracking-wide mb-1 block">
+                                    {item.date}
+                                </span>
+                                <h3 className="text-lg font-bold text-gray-900 group-hover:text-uece-green transition-colors">
+                                    {item.title}
+                                </h3>
+                            </div>
 
-                                        <div className="flex items-center gap-2 text-gray-400 group-hover:text-uece-green transition-colors text-sm font-medium shrink-0">
-                                            <span>Baixar PDF</span>
-                                            <div className="p-2 rounded-full bg-gray-50 group-hover:bg-green-50 transition-colors">
-                                                <Download className="w-5 h-5" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </motion.div>
+                            <div className="flex items-center gap-2 text-gray-400 group-hover:text-uece-green transition-colors text-sm font-medium shrink-0">
+                                <span>Baixar PDF</span>
+                                <div className="p-2 rounded-full bg-gray-50 group-hover:bg-green-50 transition-colors">
+                                    <Download className="w-5 h-5" />
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </motion.div>
                         ))}
+            </div>
+        </div>
+
+                {/* Sidebar - Info Grid */ }
+    <div className="space-y-6">
+        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
+            <h3 className="font-semibold text-gray-900 mb-4 border-b border-gray-100 pb-2">Informações Gerais</h3>
+
+            <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                    <FileText className="w-5 h-5 text-uece-green mt-0.5" />
+                    <div>
+                        <p className="text-sm text-gray-500">Número do Edital</p>
+                        <p className="font-medium text-gray-900">{call.id}</p>
                     </div>
                 </div>
 
-                {/* Sidebar - Info Grid */}
-                <div className="space-y-6">
-                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                        <h3 className="font-semibold text-gray-900 mb-4 border-b border-gray-100 pb-2">Informações Gerais</h3>
-
-                        <div className="space-y-4">
-                            <div className="flex items-start gap-3">
-                                <FileText className="w-5 h-5 text-uece-green mt-0.5" />
-                                <div>
-                                    <p className="text-sm text-gray-500">Número do Edital</p>
-                                    <p className="font-medium text-gray-900">{call.id}</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-3">
-                                <Briefcase className="w-5 h-5 text-uece-green mt-0.5" />
-                                <div>
-                                    <p className="text-sm text-gray-500">Categoria</p>
-                                    <p className="font-medium text-gray-900">{call.type} - {call.courseType}</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-3">
-                                <Calendar className="w-5 h-5 text-uece-green mt-0.5" />
-                                <div>
-                                    <p className="text-sm text-gray-500">Período de Inscrição</p>
-                                    <p className="font-medium text-gray-900">{call.startDate} até {call.endDate}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Subscription and Appeal Buttons */}
-                        <div className="flex flex-col gap-3 pt-6">
-                            {(call.status === 'Período de Inscrição' || call.status === 'Em Processo') && (
-                                <a
-                                    href={call.subscriptionLink || '#'}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${call.subscriptionLink
-                                        ? 'bg-uece-green hover:bg-green-800 hover:shadow-xl hover:-translate-y-1'
-                                        : 'bg-gray-400 cursor-not-allowed'
-                                        }`}
-                                    onClick={(e) => !call.subscriptionLink && e.preventDefault()}
-                                >
-                                    {call.subscriptionLink ? 'Inscrever-se Agora' : 'Link indisponível'}
-                                    <ExternalLink className="w-5 h-5" />
-                                </a>
-                            )}
-
-                            {/* Appeal Button */}
-                            {call.appealLink && (
-                                <a
-                                    href={call.appealLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
-                                >
-                                    Formulário de Recurso
-                                    <ExternalLink className="w-5 h-5" />
-                                </a>
-                            )}
-                        </div>
+                <div className="flex items-start gap-3">
+                    <Briefcase className="w-5 h-5 text-uece-green mt-0.5" />
+                    <div>
+                        <p className="text-sm text-gray-500">Categoria</p>
+                        <p className="font-medium text-gray-900">{call.type} - {call.courseType}</p>
                     </div>
+                </div>
 
-                    <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                        <h4 className="font-semibold text-blue-900 mb-2">Precisa de Ajuda?</h4>
-                        <p className="text-sm text-blue-700 mb-4">
-                            Se tiver dúvidas sobre o edital, entre em contato com nosso suporte pelo email:
-                        </p>
-                        <a href="mailto:cp.sate@uece.br" className="text-sm font-medium text-blue-800 hover:underline block">
-                            cp.sate@uece.br &rarr;
-                        </a>
+                <div className="flex items-start gap-3">
+                    <Calendar className="w-5 h-5 text-uece-green mt-0.5" />
+                    <div>
+                        <p className="text-sm text-gray-500">Período de Inscrição</p>
+                        <p className="font-medium text-gray-900">{call.startDate} até {call.endDate}</p>
                     </div>
                 </div>
             </div>
+
+            {/* Subscription and Appeal Buttons */}
+            <div className="flex flex-col gap-3 pt-6">
+                {(call.status === 'Período de Inscrição' || call.status === 'Em Processo') && (
+                    <a
+                        href={call.subscriptionLink || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${call.subscriptionLink
+                            ? 'bg-uece-green hover:bg-green-800 hover:shadow-xl hover:-translate-y-1'
+                            : 'bg-gray-400 cursor-not-allowed'
+                            }`}
+                        onClick={(e) => !call.subscriptionLink && e.preventDefault()}
+                    >
+                        {call.subscriptionLink ? 'Inscrever-se Agora' : 'Link indisponível'}
+                        <ExternalLink className="w-5 h-5" />
+                    </a>
+                )}
+
+                {/* Appeal Button */}
+                {call.appealLink && (
+                    <a
+                        href={call.appealLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
+                    >
+                        Formulário de Recurso
+                        <ExternalLink className="w-5 h-5" />
+                    </a>
+                )}
+            </div>
         </div>
+
+        <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+            <h4 className="font-semibold text-blue-900 mb-2">Precisa de Ajuda?</h4>
+            <p className="text-sm text-blue-700 mb-4">
+                Se tiver dúvidas sobre o edital, entre em contato com nosso suporte pelo email:
+            </p>
+            <a href="mailto:cp.sate@uece.br" className="text-sm font-medium text-blue-800 hover:underline block">
+                cp.sate@uece.br &rarr;
+            </a>
+        </div>
+    </div>
+
+    {/* Official Footer */ }
+    <div className="mt-16 pt-8 border-t border-gray-200">
+        <p className="text-gray-500 mb-8 italic">Fortaleza, {new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
+            <div>
+                <p className="font-bold text-gray-900 text-lg">Francisco Fábio Castelo Branco</p>
+                <p className="text-gray-500">Coordenador da UAB</p>
+            </div>
+            <div>
+                <p className="font-bold text-gray-900 text-lg">João Rameres Regis</p>
+                <p className="text-gray-500">Coordenador da SATE</p>
+            </div>
+        </div>
+    </div>
+
+            </div >
+        </div >
     );
 };
 
