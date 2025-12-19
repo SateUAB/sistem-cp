@@ -199,14 +199,14 @@ const Details = () => {
                             </div>
                         </div>
 
-                        {/* Subscription Button */}
-                        <div className="flex justify-end pt-6">
+                        {/* Subscription and Appeal Buttons */}
+                        <div className="flex flex-col gap-3 pt-6">
                             {(call.status === 'Período de Inscrição' || call.status === 'Em Processo') && (
                                 <a
                                     href={call.subscriptionLink || '#'}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${call.subscriptionLink
+                                    className={`w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${call.subscriptionLink
                                         ? 'bg-uece-green hover:bg-green-800 hover:shadow-xl hover:-translate-y-1'
                                         : 'bg-gray-400 cursor-not-allowed'
                                         }`}
@@ -223,7 +223,7 @@ const Details = () => {
                                     href={call.appealLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full mt-3 inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
+                                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
                                 >
                                     Formulário de Recurso
                                     <ExternalLink className="w-5 h-5" />
