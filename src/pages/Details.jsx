@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Users, DollarSign, FileText, Download, CheckCircle, Circle } from 'lucide-react';
+import { ArrowLeft, Calendar, Users, DollarSign, FileText, Download, CheckCircle, Circle, Briefcase, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useData } from '../context/DataContext';
 
@@ -175,18 +175,18 @@ const Details = () => {
 
                         <div className="space-y-4">
                             <div className="flex items-start gap-3">
-                                <Users className="w-5 h-5 text-uece-green mt-0.5" />
+                                <FileText className="w-5 h-5 text-uece-green mt-0.5" />
                                 <div>
-                                    <p className="text-sm text-gray-500">Vagas Disponíveis</p>
-                                    <p className="font-medium text-gray-900">{call.vacancies} vagas</p>
+                                    <p className="text-sm text-gray-500">Número do Edital</p>
+                                    <p className="font-medium text-gray-900">{call.editalNumber}</p>
                                 </div>
                             </div>
 
                             <div className="flex items-start gap-3">
-                                <DollarSign className="w-5 h-5 text-uece-green mt-0.5" />
+                                <Briefcase className="w-5 h-5 text-uece-green mt-0.5" />
                                 <div>
-                                    <p className="text-sm text-gray-500">Bolsa / Renda</p>
-                                    <p className="font-medium text-gray-900">{call.remuneration}</p>
+                                    <p className="text-sm text-gray-500">Categoria</p>
+                                    <p className="font-medium text-gray-900">{call.type} - {call.courseType}</p>
                                 </div>
                             </div>
 
@@ -213,6 +213,19 @@ const Details = () => {
                                     onClick={(e) => !call.subscriptionLink && e.preventDefault()}
                                 >
                                     {call.subscriptionLink ? 'Inscrever-se Agora' : 'Link indisponível'}
+                                    <ExternalLink className="w-5 h-5" />
+                                </a>
+                            )}
+
+                            {/* Appeal Button */}
+                            {call.appealLink && (
+                                <a
+                                    href={call.appealLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full mt-3 inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
+                                >
+                                    Formulário de Recurso
                                     <ExternalLink className="w-5 h-5" />
                                 </a>
                             )}

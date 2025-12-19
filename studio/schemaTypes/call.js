@@ -26,6 +26,12 @@ export const call = {
             type: 'url',
         },
         {
+            name: 'appealLink',
+            title: 'Link de Recurso',
+            description: 'Link para o formulário de recurso.',
+            type: 'url',
+        },
+        {
             name: 'type',
             title: 'Tipo de Seleção',
             type: 'string',
