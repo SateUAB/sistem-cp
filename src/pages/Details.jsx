@@ -42,7 +42,7 @@ const Details = () => {
                                 <span className="text-gray-500 text-sm font-medium">{call.type}</span>
                             </div>
                             <h1 className="text-3xl font-bold text-gray-900 mb-4">{call.title}</h1>
-                            <p className="text-lg text-gray-600 max-w-3xl">{call.description}</p>
+                            <p className="text-lg text-gray-600 max-w-3xl whitespace-pre-line">{call.description}</p>
                         </div>
                     </div>
 

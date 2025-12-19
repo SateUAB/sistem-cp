@@ -69,7 +69,7 @@ const Dashboard = () => {
                             href="https://www.uece.br/sate/home/servicos-e-informativos/chamadas-publicas/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-600 rounded-lg hover:border-uece-green hover:text-uece-green transition-all shadow-sm text-sm font-medium"
+                            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-uece-green text-uece-green rounded-xl hover:bg-green-50 transition-all shadow-md text-sm font-bold uppercase tracking-wide"
                         >
                             Acessar Chamadas Anteriores
                             <ExternalLink className="w-4 h-4" />
@@ -217,9 +217,9 @@ const Dashboard = () => {
                                     href="https://www.uece.br/sate/home/servicos-e-informativos/chamadas-publicas/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-uece-green font-medium hover:underline inline-flex items-center gap-1"
+                                    className="text-uece-green font-bold hover:underline inline-flex items-center gap-1"
                                 >
-                                    Acesse o sistema anterior
+                                    Acesse as chamadas públicas anteriores
                                     <ExternalLink className="w-3 h-3" />
                                 </a>
                             </p>
