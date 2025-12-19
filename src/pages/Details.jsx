@@ -77,10 +77,13 @@ const Details = () => {
                 </div>
             </div>
 
+            {/* Main Grid Layout */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Main Content - Timeline */}
+
+                {/* LEFT COLUMN: Main Content */}
                 <div className="lg:col-span-2">
-                    {/* Featured Documents Section (Edital, etc.) */}
+
+                    {/* Featured Documents Section */}
                     {call.timeline.some(t => t.isFeatured) && (
                         <div className="mb-10">
                             <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
@@ -138,8 +141,10 @@ const Details = () => {
                         </div>
                     </div>
 
-                    <p className="text-lg text-gray-600 max-w-3xl whitespace-pre-wrap leading-relaxed text-justify">{call.description}</p>
+                    {/* Description */}
+                    <p className="text-lg text-gray-600 max-w-3xl whitespace-pre-wrap leading-relaxed text-justify mb-12">{call.description}</p>
 
+                    {/* Timeline */}
                     <div className="pt-8 mb-12 border-t border-gray-100">
                         <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                             <Calendar className="w-6 h-6 text-uece-green" />
@@ -149,7 +154,7 @@ const Details = () => {
                         <div className="relative border-l border-gray-200 ml-3 space-y-8 pl-10 pb-4">
                             {call.timeline.filter(t => !t.isFeatured).map((item, index) => (
                                 <motion.div
-                                    key={index}
+                                    key={`timeline-${index}`}
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.1 }}
@@ -188,81 +193,6 @@ const Details = () => {
                         </div>
                     </div>
 
-                    {/* Sidebar - Info Grid */}
-                    <div className="space-y-6">
-                        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 className="font-semibold text-gray-900 mb-4 border-b border-gray-100 pb-2">Informações Gerais</h3>
-
-                            <div className="space-y-4">
-                                <div className="flex items-start gap-3">
-                                    <FileText className="w-5 h-5 text-uece-green mt-0.5" />
-                                    <div>
-                                        <p className="text-sm text-gray-500">Número do Edital</p>
-                                        <p className="font-medium text-gray-900">{call.id}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-3">
-                                    <Briefcase className="w-5 h-5 text-uece-green mt-0.5" />
-                                    <div>
-                                        <p className="text-sm text-gray-500">Categoria</p>
-                                        <p className="font-medium text-gray-900">{call.type} - {call.courseType}</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex items-start gap-3">
-                                    <Calendar className="w-5 h-5 text-uece-green mt-0.5" />
-                                    <div>
-                                        <p className="text-sm text-gray-500">Período de Inscrição</p>
-                                        <p className="font-medium text-gray-900">{call.startDate} até {call.endDate}</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Subscription and Appeal Buttons */}
-                            <div className="flex flex-col gap-3 pt-6">
-                                {(call.status === 'Período de Inscrição' || call.status === 'Em Processo') && (
-                                    <a
-                                        href={call.subscriptionLink || '#'}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={`w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${call.subscriptionLink
-                                            ? 'bg-uece-green hover:bg-green-800 hover:shadow-xl hover:-translate-y-1'
-                                            : 'bg-gray-400 cursor-not-allowed'
-                                            }`}
-                                        onClick={(e) => !call.subscriptionLink && e.preventDefault()}
-                                    >
-                                        {call.subscriptionLink ? 'Inscrever-se Agora' : 'Link indisponível'}
-                                        <ExternalLink className="w-5 h-5" />
-                                    </a>
-                                )}
-
-                                {/* Appeal Button */}
-                                {call.appealLink && (
-                                    <a
-                                        href={call.appealLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
-                                    >
-                                        Formulário de Recurso
-                                        <ExternalLink className="w-5 h-5" />
-                                    </a>
-                                )}
-                            </div>
-                        </div>
-
-                        <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-                            <h4 className="font-semibold text-blue-900 mb-2">Precisa de Ajuda?</h4>
-                            <p className="text-sm text-blue-700 mb-4">
-                                Se tiver dúvidas sobre o edital, entre em contato com nosso suporte pelo email:
-                            </p>
-                            <a href="mailto:cp.sate@uece.br" className="text-sm font-medium text-blue-800 hover:underline block">
-                                cp.sate@uece.br &rarr;
-                            </a>
-                        </div>
-                    </div>
-
                     {/* Official Footer */}
                     <div className="mt-16 pt-8 border-t border-gray-200">
                         <p className="text-gray-500 mb-8 italic">Fortaleza, {new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
@@ -278,10 +208,93 @@ const Details = () => {
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </div >
-            </div >
-            );
+                {/* RIGHT COLUMN: Sidebar */}
+                <div className="lg:col-span-1 space-y-6">
+                    {/* Info Card */}
+                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm sticky top-6">
+                        <h3 className="font-semibold text-gray-900 mb-4 border-b border-gray-100 pb-2">Informações Gerais</h3>
+
+                        <div className="space-y-4">
+                            <div className="flex items-start gap-3">
+                                <FileText className="w-5 h-5 text-uece-green mt-0.5" />
+                                <div>
+                                    <p className="text-sm text-gray-500">Número do Edital</p>
+                                    <p className="font-medium text-gray-900">{call.id}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                                <Briefcase className="w-5 h-5 text-uece-green mt-0.5" />
+                                <div>
+                                    <p className="text-sm text-gray-500">Categoria</p>
+                                    <p className="font-medium text-gray-900">{call.type} - {call.courseType}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex items-start gap-3">
+                                <Calendar className="w-5 h-5 text-uece-green mt-0.5" />
+                                <div>
+                                    <p className="text-sm text-gray-500">Período de Inscrição</p>
+                                    <p className="font-medium text-gray-900">{call.startDate} até {call.endDate}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-col gap-3 pt-6">
+                            {(call.status === 'Período de Inscrição' || call.status === 'Em Processo') && (
+                                <a
+                                    href={call.subscriptionLink || '#'}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-white shadow-lg transition-all ${call.subscriptionLink
+                                        ? 'bg-uece-green hover:bg-green-800 hover:shadow-xl hover:-translate-y-1'
+                                        : 'bg-gray-400 cursor-not-allowed'
+                                        }`}
+                                    onClick={(e) => !call.subscriptionLink && e.preventDefault()}
+                                >
+                                    {call.subscriptionLink ? 'Inscrever-se Agora' : 'Link indisponível'}
+                                    <ExternalLink className="w-5 h-5" />
+                                </a>
+                            )}
+
+                            {call.appealLink && (
+                                <a
+                                    href={call.appealLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
+                                >
+                                    Formulário de Recurso
+                                    <ExternalLink className="w-5 h-5" />
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Help Box */}
+                    <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+                        <div className="flex items-start gap-3">
+                            <div className="bg-blue-100 p-2 rounded-full text-blue-600">
+                                <AlertTriangle className="w-5 h-5" />
+                            </div>
+                            <div>
+                                <h4 className="font-semibold text-blue-900 mb-1">Precisa de Ajuda?</h4>
+                                <p className="text-sm text-blue-700 mb-3">
+                                    Se tiver dúvidas sobre o edital, entre em contato com nosso suporte:
+                                </p>
+                                <a href="mailto:cp.sate@uece.br" className="text-sm font-bold text-blue-800 hover:text-blue-900 hover:underline flex items-center gap-1">
+                                    cp.sate@uece.br <ExternalLink className="w-3 h-3" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
-            export default Details;
+export default Details;
