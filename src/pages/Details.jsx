@@ -201,7 +201,7 @@ const Details = () => {
 
                         {/* Subscription Button */}
                         <div className="flex justify-end pt-6">
-                            {call.status === 'Período de Inscrição' && (
+                            {(call.status === 'Período de Inscrição' || call.status === 'Em Processo') && (
                                 <a
                                     href={call.subscriptionLink || '#'}
                                     target="_blank"
