@@ -23,8 +23,7 @@ export const DataProvider = ({ children }) => {
         status,
         subscriptionLink,
         appealLink,
-        vacancies,
-        remuneration,
+        appealLink,
         startDate,
         endDate,
         timeline[] {

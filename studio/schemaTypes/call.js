@@ -67,16 +67,7 @@ export const call = {
                 ]
             }
         },
-        {
-            name: 'vacancies',
-            title: 'Vagas',
-            type: 'string', // Using string to allow "CR" or numbers
-        },
-        {
-            name: 'remuneration',
-            title: 'Bolsa / Remuneração',
-            type: 'string',
-        },
+
         {
             name: 'startDate',
             title: 'Início',
