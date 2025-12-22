@@ -185,7 +185,7 @@ const Details = () => {
                 {/* RIGHT COLUMN: Sidebar */}
                 <div className="lg:col-span-1 space-y-6">
                     {/* Info Card */}
-                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm sticky top-6">
+                    <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm lg:sticky lg:top-6">
                         <h3 className="font-semibold text-gray-900 mb-4 border-b border-gray-100 pb-2">Informações Gerais</h3>
 
                         <div className="space-y-4">
