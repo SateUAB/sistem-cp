@@ -293,4 +293,9 @@ const Details = () => {
                 </div>
             </div>
 
-            export default Details;
+        </div>
+        </div >
+    );
+};
+
+export default Details;
