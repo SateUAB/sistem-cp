@@ -109,9 +109,10 @@ const Dashboard = () => {
                                 onChange={(e) => setSelectedCourseType(e.target.value)}
                             >
                                 <option value="Todos">Todos</option>
-                                <option value="Graduação">Graduação</option>
-                                <option value="Especialização">Especialização</option>
-                                <option value="Extensão">Extensão</option>
+                                {/* Dynamic Course Types */}
+                                {[...new Set(calls.map(c => c.courseType).filter(Boolean))].sort().map(type => (
+                                    <option key={type} value={type}>{type}</option>
+                                ))}
                             </select>
                         </div>
 
@@ -123,9 +124,10 @@ const Dashboard = () => {
                                 onChange={(e) => setSelectedRole(e.target.value)}
                             >
                                 <option value="Todos">Todas as Funções</option>
-                                <option value="Tutor">Tutores</option>
-                                <option value="Professor">Professores</option>
-                                <option value="Apoio Administrativo">Apoio</option>
+                                {/* Dynamic Roles */}
+                                {[...new Set(calls.map(c => c.type).filter(Boolean))].sort().map(role => (
+                                    <option key={role} value={role}>{role}</option>
+                                ))}
                             </select>
                         </div>
 
@@ -137,9 +139,10 @@ const Dashboard = () => {
                                 onChange={(e) => setSelectedStatus(e.target.value)}
                             >
                                 <option value="Todos">Todos os Status</option>
-                                <option value="Período de Inscrição">Inscrições Abertas</option>
-                                <option value="Em Processo">Em Processo</option>
-                                <option value="Encerrado">Encerrados</option>
+                                {/* Dynamic Statuses */}
+                                {[...new Set(calls.map(c => c.status).filter(Boolean))].sort().map(status => (
+                                    <option key={status} value={status}>{status}</option>
+                                ))}
                             </select>
                         </div>
                     </div>

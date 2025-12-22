@@ -46,6 +46,8 @@ export const call = {
                     { title: 'Professor', value: 'Professor' },
                     { title: 'Tutor', value: 'Tutor' },
                     { title: 'Apoio Administrativo', value: 'Apoio Administrativo' },
+                    { title: 'Coordenador', value: 'Coordenador' },
+                    { title: 'Assistente à Docência', value: 'Assistente à Docência' },
                 ]
             }
         },
@@ -58,6 +60,7 @@ export const call = {
                     { title: 'Graduação', value: 'Graduação' },
                     { title: 'Especialização', value: 'Especialização' },
                     { title: 'Extensão', value: 'Extensão' },
+                    { title: 'Outros', value: 'Outros' },
                 ]
             }
         },
