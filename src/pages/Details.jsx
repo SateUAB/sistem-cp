@@ -181,7 +181,9 @@ const Details = () => {
 
                     {/* Official Footer */}
                     <div className="mt-16 pt-8 border-t border-gray-200">
-                        <p className="text-gray-500 mb-8 italic">Fortaleza, {new Date().toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        <p className="text-gray-500 mb-8 italic">
+                            Fortaleza, {call.publicationDate ? new Date(call.publicationDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : 'Data não informada'}
+                        </p>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl">
                             <div>

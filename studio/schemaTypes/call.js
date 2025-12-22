@@ -20,6 +20,12 @@ export const call = {
             type: 'text',
         },
         {
+            name: 'publicationDate',
+            title: 'Data de Publicação',
+            description: 'Data que aparecerá no rodapé. Ex: 2025-12-22',
+            type: 'date',
+        },
+        {
             name: 'subscriptionLink',
             title: 'Link de Inscrição',
             description: 'Link para o Google Forms ou sistema de inscrição.',
