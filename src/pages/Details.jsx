@@ -278,30 +278,27 @@ const Details = () => {
                 </div>
 
             </div>
-        </div>
 
-    {/* Official Footer - Now outside the grid to stay at the bottom on mobile */ }
-    <div className="w-full mt-16 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <p className="text-gray-500 mb-8 italic text-base md:text-lg">
-                Fortaleza, {call.publicationDate ? new Date(call.publicationDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : 'Data não informada'}
-            </p>
+            {/* Official Footer - Now outside the grid to stay at the bottom on mobile */}
+            <div className="w-full mt-16 border-t border-gray-200">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                    <p className="text-gray-500 mb-8 italic text-base md:text-lg">
+                        Fortaleza, {call.publicationDate ? new Date(call.publicationDate).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : 'Data não informada'}
+                    </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <p className="font-bold text-gray-900 text-base md:text-xl">Francisco Fábio Castelo Branco</p>
-                    <p className="text-gray-500 text-sm md:text-base">Coordenador da UAB</p>
-                </div>
-                <div>
-                    <p className="font-bold text-gray-900 text-base md:text-xl">João Rameres Regis</p>
-                    <p className="text-gray-500 text-sm md:text-base">Coordenador da SATE</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <p className="font-bold text-gray-900 text-base md:text-xl">Francisco Fábio Castelo Branco</p>
+                            <p className="text-gray-500 text-sm md:text-base">Coordenador da UAB</p>
+                        </div>
+                        <div>
+                            <p className="font-bold text-gray-900 text-base md:text-xl">João Rameres Regis</p>
+                            <p className="text-gray-500 text-sm md:text-base">Coordenador da SATE</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-            </div >
-        </div >
     );
 };
 
