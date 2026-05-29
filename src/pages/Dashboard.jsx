@@ -27,12 +27,14 @@ const Dashboard = () => {
             case 'Tutor': return <Users className="w-5 h-5" />;
             case 'Professor': return <BookOpen className="w-5 h-5" />;
             case 'Apoio Administrativo': return <Briefcase className="w-5 h-5" />;
+            case 'Aluno': return <Users className="w-5 h-5" />;
             default: return <Briefcase className="w-5 h-5" />;
         }
     };
 
     const getStatusColor = (status) => {
         switch (status) {
+            case 'Publicado': return 'bg-blue-100 text-blue-700 border-blue-200';
             case 'Período de Inscrição': return 'bg-green-100 text-green-700 border-green-200';
             case 'Em Processo': return 'bg-amber-100 text-amber-700 border-amber-200';
             case 'Encerrado': return 'bg-gray-100 text-gray-700 border-gray-200';

@@ -15,7 +15,7 @@ const CallForm = () => {
         description: '',
         type: 'Tutor',
         courseType: 'Graduação',
-        status: 'Aberto',
+        status: 'Publicado',
         vacancies: '',
         remuneration: '',
         startDate: '',
@@ -113,9 +113,10 @@ const CallForm = () => {
                             onChange={e => setFormData({ ...formData, status: e.target.value })}
                             className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-uece-green outline-none"
                         >
-                            <option value="Aberto">Aberto</option>
-                            <option value="Em Análise">Em Análise</option>
-                            <option value="Finalizado">Finalizado</option>
+                            <option value="Publicado">Publicado</option>
+                            <option value="Período de Inscrição">Período de Inscrição</option>
+                            <option value="Em Processo">Em Processo</option>
+                            <option value="Encerrado">Encerrado</option>
                         </select>
                     </div>
                 </div>
@@ -153,6 +154,9 @@ const CallForm = () => {
                             <option value="Tutor">Tutor</option>
                             <option value="Professor">Professor</option>
                             <option value="Apoio Administrativo">Apoio Administrativo</option>
+                            <option value="Coordenador">Coordenador</option>
+                            <option value="Assistente à Docência">Assistente à Docência</option>
+                            <option value="Aluno">Aluno</option>
                         </select>
                     </div>
                     <div>

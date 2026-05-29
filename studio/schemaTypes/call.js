@@ -48,6 +48,7 @@ export const call = {
                     { title: 'Apoio Administrativo', value: 'Apoio Administrativo' },
                     { title: 'Coordenador', value: 'Coordenador' },
                     { title: 'Assistente à Docência', value: 'Assistente à Docência' },
+                    { title: 'Aluno', value: 'Aluno' },
                 ]
             }
         },
@@ -70,6 +71,7 @@ export const call = {
             type: 'string',
             options: {
                 list: [
+                    { title: 'Publicado', value: 'Publicado' },
                     { title: 'Período de Inscrição', value: 'Período de Inscrição' },
                     { title: 'Em Processo', value: 'Em Processo' },
                     { title: 'Encerrado', value: 'Encerrado' },

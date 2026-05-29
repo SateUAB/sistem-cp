@@ -14,7 +14,7 @@ export const DataProvider = ({ children }) => {
     const fetchCalls = async () => {
       try {
         // Simple query to fetch calls
-        const query = `* [_type == "call"] | order(startDate desc) {
+        const query = `* [_type == "call"] | order(publicationDate desc) {
     "id": editalNumber,
         title,
         description,

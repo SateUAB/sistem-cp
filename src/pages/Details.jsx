@@ -20,7 +20,7 @@ const Details = () => {
     }
 
     // Status Bar Logic
-    const steps = ['Período de Inscrição', 'Em Processo', 'Encerrado'];
+    const steps = ['Publicado', 'Período de Inscrição', 'Em Processo', 'Encerrado'];
     const currentStepIndex = steps.indexOf(call.status) !== -1 ? steps.indexOf(call.status) : 0; // Simplified logic for demo
 
     return (
@@ -268,8 +268,8 @@ const Details = () => {
                                     <p className="text-sm text-blue-700">
                                         Dúvidas? Contate o suporte:
                                     </p>
-                                    <a href="mailto:cp.sate@uece.br" className="text-sm font-bold text-blue-800 hover:text-blue-900 hover:underline flex items-center gap-1 mt-1">
-                                        cp.sate@uece.br <ExternalLink className="w-3 h-3" />
+                                    <a href={`mailto:${call.id === '35/2026' ? 'cp.graduacao@uece.br' : 'cp.sate@uece.br'}`} className="text-sm font-bold text-blue-800 hover:text-blue-900 hover:underline flex items-center gap-1 mt-1">
+                                        {call.id === '35/2026' ? 'cp.graduacao@uece.br' : 'cp.sate@uece.br'} <ExternalLink className="w-3 h-3" />
                                     </a>
                                 </div>
                             </div>
@@ -288,8 +288,12 @@ const Details = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <p className="font-bold text-gray-900 text-base md:text-xl">Francisco Fábio Castelo Branco</p>
-                            <p className="text-gray-500 text-sm md:text-base">Coordenador da UAB</p>
+                            <p className="font-bold text-gray-900 text-base md:text-xl">
+                                {call.publicationDate && call.publicationDate >= '2026-05-05' ? 'Pâmela Felix Freitas' : 'Francisco Fábio Castelo Branco'}
+                            </p>
+                            <p className="text-gray-500 text-sm md:text-base">
+                                {call.publicationDate && call.publicationDate >= '2026-05-05' ? 'Coordenadora da UAB' : 'Coordenador da UAB'}
+                            </p>
                         </div>
                         <div>
                             <p className="font-bold text-gray-900 text-base md:text-xl">João Rameres Regis</p>
