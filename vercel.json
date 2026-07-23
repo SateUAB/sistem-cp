@@ -1,4 +1,5 @@
 {
+    "name": "sistem-cp",
     "rewrites": [
         {
             "source": "/(.*)",

@@ -218,6 +218,31 @@ const Details = () => {
 
                             {/* Action Buttons */}
                             <div className="flex flex-col gap-3 pt-6">
+                                {call.id === '35/2026' && (
+                                    <div className="w-full flex flex-col gap-1">
+                                        {new Date() < new Date('2026-06-04T01:00:00-03:00') ? (
+                                            <a
+                                                href="https://forms.gle/aXGgN4hmwMzHHcsV6"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-uece-green border-2 border-uece-green hover:bg-green-50 transition-all"
+                                            >
+                                                Solicitar Isenção
+                                                <ExternalLink className="w-5 h-5" />
+                                            </a>
+                                        ) : (
+                                            <button
+                                                disabled
+                                                className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-gray-400 border-2 border-gray-300 bg-gray-50 cursor-not-allowed transition-all"
+                                            >
+                                                Solicitar Isenção (Encerrado)
+                                                <ExternalLink className="w-5 h-5" />
+                                            </button>
+                                        )}
+                                        <span className="text-xs text-center text-gray-500 font-medium mt-1">Período de isenção: 01/06/2026 até 03/06/2026</span>
+                                    </div>
+                                )}
+
                                 {(call.status === 'Período de Inscrição' || call.status === 'Em Processo') && (
                                     <a
                                         href={call.subscriptionLink || '#'}
@@ -302,6 +327,14 @@ const Details = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Chatbot Widget */}
+            <chamadas-publicas-widget 
+                api-base="https://chatbot-cp-alpha.vercel.app/api/v1"
+                edital={call.id}
+            >
+                <span slot="rotulo-botao">Tirar dúvidas do edital</span>
+            </chamadas-publicas-widget>
         </div>
     );
 };
