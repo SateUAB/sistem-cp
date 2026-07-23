@@ -26,12 +26,16 @@ function App() {
       </Layout>
 
       {/* Chatbot Widget - Global */}
-      <chamadas-publicas-widget 
-        api-base="https://chatbot-cp-alpha.vercel.app/api/v1"
-        edital={editalId}
-      >
-        <span slot="rotulo-botao">Tirar dúvidas do edital</span>
-      </chamadas-publicas-widget>
+      <div 
+        dangerouslySetInnerHTML={{
+          __html: `<chamadas-publicas-widget 
+            api-base="https://chatbot-cp-alpha.vercel.app/api/v1"
+            edital="${editalId}"
+          >
+            <span slot="rotulo-botao">Tirar dúvidas do edital</span>
+          </chamadas-publicas-widget>`
+        }} 
+      />
     </>
   );
 }
