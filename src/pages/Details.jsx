@@ -328,13 +328,6 @@ const Details = () => {
                 </div>
             </div>
 
-            {/* Chatbot Widget */}
-            <chamadas-publicas-widget 
-                api-base="https://chatbot-cp-alpha.vercel.app/api/v1"
-                edital={call.id}
-            >
-                <span slot="rotulo-botao">Tirar dúvidas do edital</span>
-            </chamadas-publicas-widget>
         </div>
     );
 };
