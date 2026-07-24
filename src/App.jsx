@@ -32,7 +32,7 @@ function App() {
             api-base="https://chatbot-cp-alpha.vercel.app/api/v1"
             edital="${editalId}"
           >
-            <span slot="rotulo-botao">Tirar dúvidas do edital</span>
+            <span slot="rotulo-botao" style="position: relative; top: 2px;">Tire suas dúvidas</span>
           </chamadas-publicas-widget>`
         }} 
       />
