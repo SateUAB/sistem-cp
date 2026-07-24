@@ -254,7 +254,7 @@ const Details = () => {
                                             }`}
                                         onClick={(e) => !call.subscriptionLink && e.preventDefault()}
                                     >
-                                        {call.subscriptionLink ? 'Inscrever-se Agora' : 'Link indisponível'}
+                                        {call.subscriptionLink ? 'Inscreva-se Agora' : 'Link indisponível'}
                                         <ExternalLink className="w-5 h-5" />
                                     </a>
                                 )}
