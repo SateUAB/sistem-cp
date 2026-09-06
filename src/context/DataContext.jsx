@@ -25,6 +25,7 @@ export const DataProvider = ({ children }) => {
         appealLink,
         publicationDate,
         startDate,
+        subscriptionEndDate,
         endDate,
         timeline[] {
         date,

@@ -84,13 +84,19 @@ export const call = {
             name: 'startDate',
             title: 'Início',
             type: 'string',
-            description: 'Ex: 01/10/2025'
+            description: 'Início da CP e das Inscrições. Ex: 01/10/2025'
+        },
+        {
+            name: 'subscriptionEndDate',
+            title: 'Fim das Inscrições',
+            type: 'string',
+            description: 'Data de término do período de inscrições. Ex: 15/10/2025'
         },
         {
             name: 'endDate',
-            title: 'Fim',
+            title: 'Fim da Chamada Pública',
             type: 'string',
-            description: 'Ex: 30/10/2025'
+            description: 'Data de término da Chamada Pública / encerramento do processo. Ex: 30/10/2025'
         },
         {
             name: 'timeline',

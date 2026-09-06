@@ -19,6 +19,7 @@ const CallForm = () => {
         vacancies: '',
         remuneration: '',
         startDate: '',
+        subscriptionEndDate: '',
         endDate: '',
         timeline: []
     });
@@ -195,9 +196,9 @@ const CallForm = () => {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Início Inscrição</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Início (CP e Inscrições)</label>
                         <input
                             type="text"
                             placeholder="dd/mm/aaaa"
@@ -207,7 +208,17 @@ const CallForm = () => {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Fim Inscrição</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Fim das Inscrições</label>
+                        <input
+                            type="text"
+                            placeholder="dd/mm/aaaa"
+                            value={formData.subscriptionEndDate || ''}
+                            onChange={e => setFormData({ ...formData, subscriptionEndDate: e.target.value })}
+                            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-uece-green outline-none"
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Fim da Chamada Pública</label>
                         <input
                             type="text"
                             placeholder="dd/mm/aaaa"

@@ -9,6 +9,7 @@ export const calls = [
     vacancies: "CR",
     remuneration: "R$ 1.300,00",
     startDate: "01/10/2025",
+    subscriptionEndDate: "20/10/2025",
     endDate: "30/10/2025",
     timeline: [
       { date: "01/10/2025", title: "Chamada Pública Nº 137/2025 - Abertura", type: "pdf", isFeatured: true },
@@ -25,6 +26,7 @@ export const calls = [
     vacancies: 12,
     remuneration: "R$ 1.100,00",
     startDate: "10/12/2025",
+    subscriptionEndDate: "15/12/2025",
     endDate: "20/12/2025",
     timeline: [
       { date: "10/12/2025", title: "Edital de Abertura Nº 45/2025", type: "pdf", isFeatured: true },
@@ -41,6 +43,7 @@ export const calls = [
     vacancies: 3,
     remuneration: "R$ 1.300,00",
     startDate: "01/11/2025",
+    subscriptionEndDate: "10/11/2025",
     endDate: "15/11/2025",
     timeline: [
       { date: "30/11/2025", title: "Resultado da Análise de Currículo", type: "pdf" },
@@ -59,6 +62,7 @@ export const calls = [
     vacancies: 5,
     remuneration: "R$ 1.500,00",
     startDate: "01/10/2025",
+    subscriptionEndDate: "08/10/2025",
     endDate: "15/10/2025",
     timeline: [
       { date: "05/11/2025", title: "Resultado Final", type: "pdf" },
@@ -77,6 +81,7 @@ export const calls = [
     vacancies: 20,
     remuneration: "R$ 1.100,00",
     startDate: "05/12/2025",
+    subscriptionEndDate: "18/12/2025",
     endDate: "25/12/2025",
     timeline: [
       { date: "05/12/2025", title: "Edital de Abertura Nº 46/2025", type: "pdf", isFeatured: true },
