@@ -49,6 +49,7 @@ export const timelineItem = {
             options: {
                 list: [
                     { title: 'Inscrição',                        value: 'inscricao' },
+                    { title: 'Heteroidentificação',              value: 'heteroidentificacao' },
                     { title: 'Análise de currículo ou títulos',  value: 'analise_titulos' },
                     { title: 'Prova online',                     value: 'prova_online' },
                     { title: 'Entrevista',                       value: 'entrevista' },

@@ -295,6 +295,7 @@ const CallForm = () => {
                                             >
                                                 <option value="">Selecione a etapa...</option>
                                                 <option value="inscricao">Inscrição</option>
+                                                <option value="heteroidentificacao">Heteroidentificação</option>
                                                 <option value="analise_titulos">Análise de currículo ou títulos</option>
                                                 <option value="prova_online">Prova online</option>
                                                 <option value="entrevista">Entrevista</option>

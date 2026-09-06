@@ -38,6 +38,7 @@ const Details = () => {
 
     const phaseKindLabels = {
         'inscricao': 'Inscrição',
+        'heteroidentificacao': 'Heteroidentificação',
         'analise_titulos': 'Análise de Currículo/Títulos',
         'prova_online': 'Prova Online',
         'entrevista': 'Entrevista',
