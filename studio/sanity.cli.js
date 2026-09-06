@@ -6,10 +6,11 @@ export default defineCliConfig({
     dataset: 'production'
   },
   deployment: {
+    appId: 'b44trjdwqs71dnasqmdkzid9',
     /**
-     * Enable auto-updates for studios.
-     * Learn more at https://www.sanity.io/docs/cli#auto-updates
+     * Definido como false para evitar o timeout de 120s (Extract manifest aborted)
+     * e tornar o deploy instantâneo.
      */
-    autoUpdates: true,
+    autoUpdates: false,
   }
 })
