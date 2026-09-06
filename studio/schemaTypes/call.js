@@ -45,6 +45,7 @@ export const call = {
                 list: [
                     { title: 'Professor', value: 'Professor' },
                     { title: 'Tutor', value: 'Tutor' },
+                    { title: 'Mediador Pedagógico', value: 'Mediador Pedagógico' },
                     { title: 'Apoio Administrativo', value: 'Apoio Administrativo' },
                     { title: 'Coordenador', value: 'Coordenador' },
                     { title: 'Assistente à Docência', value: 'Assistente à Docência' },
@@ -97,5 +98,22 @@ export const call = {
             type: 'array',
             of: [{ type: 'timelineItem' }]
         }
-    ]
+    ],
+    preview: {
+        select: {
+            title: 'title',
+            subtitle: 'editalNumber',
+            type: 'type',
+            status: 'status'
+        },
+        prepare({ title, subtitle, type, status }) {
+            const editalPrefix = subtitle ? `Edital ${subtitle}` : 'Edital sem número';
+            const callTitle = title ? ` - ${title}` : '';
+            const details = [type, status].filter(Boolean).join(' • ');
+            return {
+                title: `${editalPrefix}${callTitle}`,
+                subtitle: details || 'Sem detalhes'
+            };
+        }
+    }
 }

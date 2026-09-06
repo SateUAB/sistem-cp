@@ -153,6 +153,7 @@ const CallForm = () => {
                         >
                             <option value="Tutor">Tutor</option>
                             <option value="Professor">Professor</option>
+                            <option value="Mediador Pedagógico">Mediador Pedagógico</option>
                             <option value="Apoio Administrativo">Apoio Administrativo</option>
                             <option value="Coordenador">Coordenador</option>
                             <option value="Assistente à Docência">Assistente à Docência</option>

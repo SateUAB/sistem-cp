@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Briefcase, BookOpen, Users, ArrowRight, ExternalLink } from 'lucide-react';
+import { Search, Filter, Briefcase, BookOpen, Users, GraduationCap, ArrowRight, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -26,6 +26,9 @@ const Dashboard = () => {
         switch (type) {
             case 'Tutor': return <Users className="w-5 h-5" />;
             case 'Professor': return <BookOpen className="w-5 h-5" />;
+            case 'Mediador Pedagógico':
+            case 'MEDIADOR PEDAGÓGICO':
+                return <GraduationCap className="w-5 h-5" />;
             case 'Apoio Administrativo': return <Briefcase className="w-5 h-5" />;
             case 'Aluno': return <Users className="w-5 h-5" />;
             default: return <Briefcase className="w-5 h-5" />;
