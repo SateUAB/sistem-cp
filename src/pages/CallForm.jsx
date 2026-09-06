@@ -62,7 +62,12 @@ const CallForm = () => {
         const newItem = {
             date: new Date().toLocaleDateString('pt-BR'),
             title: "Nova Publicação",
-            type: "pdf"
+            type: "pdf",
+            documentType: '',
+            customDocumentType: '',
+            phaseKind: '',
+            customPhaseKind: '',
+            isFeatured: false
         };
         setFormData(prev => ({
             ...prev,
@@ -251,6 +256,63 @@ const CallForm = () => {
                                         className="w-full px-3 py-1.5 rounded border border-gray-300 text-sm"
                                         placeholder="Título do Documento"
                                     />
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-700 mb-1">Tipo do documento</label>
+                                            <select
+                                                value={item.documentType || ''}
+                                                onChange={e => updateTimelineItem(index, 'documentType', e.target.value)}
+                                                className="w-full px-3 py-1.5 rounded border border-gray-300 text-sm bg-white"
+                                            >
+                                                <option value="">Selecione o tipo...</option>
+                                                <option value="edital">Edital</option>
+                                                <option value="adendo">Adendo</option>
+                                                <option value="retificacao">Retificação</option>
+                                                <option value="comunicado">Comunicado</option>
+                                                <option value="convocacao">Convocação</option>
+                                                <option value="cronograma">Cronograma</option>
+                                                <option value="resultado-preliminar">Resultado preliminar</option>
+                                                <option value="resultado-definitivo">Resultado definitivo</option>
+                                                <option value="resultado-final">Resultado final</option>
+                                                <option value="outro">Outro (especificar)</option>
+                                            </select>
+                                            {item.documentType === 'outro' && (
+                                                <input
+                                                    type="text"
+                                                    placeholder="Qual outro tipo de documento?"
+                                                    value={item.customDocumentType || ''}
+                                                    onChange={e => updateTimelineItem(index, 'customDocumentType', e.target.value)}
+                                                    className="w-full mt-1.5 px-3 py-1.5 rounded border border-gray-300 text-sm"
+                                                />
+                                            )}
+                                        </div>
+                                        <div>
+                                            <label className="block text-xs font-medium text-gray-700 mb-1">Etapa a que se refere (opcional)</label>
+                                            <select
+                                                value={item.phaseKind || ''}
+                                                onChange={e => updateTimelineItem(index, 'phaseKind', e.target.value)}
+                                                className="w-full px-3 py-1.5 rounded border border-gray-300 text-sm bg-white"
+                                            >
+                                                <option value="">Selecione a etapa...</option>
+                                                <option value="inscricao">Inscrição</option>
+                                                <option value="analise_titulos">Análise de currículo ou títulos</option>
+                                                <option value="prova_online">Prova online</option>
+                                                <option value="entrevista">Entrevista</option>
+                                                <option value="curso_formacao_ead">Curso de formação EaD</option>
+                                                <option value="final">Final</option>
+                                                <option value="outro">Outro (especificar)</option>
+                                            </select>
+                                            {item.phaseKind === 'outro' && (
+                                                <input
+                                                    type="text"
+                                                    placeholder="Qual outra etapa?"
+                                                    value={item.customPhaseKind || ''}
+                                                    onChange={e => updateTimelineItem(index, 'customPhaseKind', e.target.value)}
+                                                    className="w-full mt-1.5 px-3 py-1.5 rounded border border-gray-300 text-sm"
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
                                     <div className="flex gap-3">
                                         <input
                                             type="text"

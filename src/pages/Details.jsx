@@ -23,6 +23,29 @@ const Details = () => {
     const steps = ['Publicado', 'Período de Inscrição', 'Em Processo', 'Encerrado'];
     const currentStepIndex = steps.indexOf(call.status) !== -1 ? steps.indexOf(call.status) : 0; // Simplified logic for demo
 
+    const documentTypeLabels = {
+        'edital': 'Edital',
+        'adendo': 'Adendo',
+        'retificacao': 'Retificação',
+        'comunicado': 'Comunicado',
+        'convocacao': 'Convocação',
+        'cronograma': 'Cronograma',
+        'resultado-preliminar': 'Resultado Preliminar',
+        'resultado-definitivo': 'Resultado Definitivo',
+        'resultado-final': 'Resultado Final',
+        'outro': 'Outro'
+    };
+
+    const phaseKindLabels = {
+        'inscricao': 'Inscrição',
+        'analise_titulos': 'Análise de Currículo/Títulos',
+        'prova_online': 'Prova Online',
+        'entrevista': 'Entrevista',
+        'curso_formacao_ead': 'Curso EaD',
+        'final': 'Final',
+        'outro': 'Outro'
+    };
+
     return (
         <div className="min-h-screen bg-gray-50 pb-4">
             {/* Header */}
@@ -159,9 +182,33 @@ const Details = () => {
                                     >
                                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                                             <div>
-                                                <span className="text-xs font-bold text-uece-green uppercase tracking-wide mb-1 block">
-                                                    {item.date}
-                                                </span>
+                                                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                                                    <span className="text-xs font-bold text-uece-green uppercase tracking-wide">
+                                                        {item.date}
+                                                    </span>
+                                                    {item.documentType && (
+                                                        <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
+                                                            item.documentType === 'resultado-preliminar'
+                                                                ? 'bg-amber-100 text-amber-800 border border-amber-200'
+                                                                : item.documentType === 'resultado-definitivo' || item.documentType === 'resultado-final'
+                                                                ? 'bg-green-100 text-green-800 border border-green-200'
+                                                                : item.documentType === 'convocacao'
+                                                                ? 'bg-purple-100 text-purple-800 border border-purple-200'
+                                                                : 'bg-blue-50 text-blue-700 border border-blue-200'
+                                                        }`}>
+                                                            {item.documentType === 'outro' && item.customDocumentType
+                                                                ? item.customDocumentType
+                                                                : (documentTypeLabels[item.documentType] || item.documentType)}
+                                                        </span>
+                                                    )}
+                                                    {item.phaseKind && (
+                                                        <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 border border-gray-200">
+                                                            {item.phaseKind === 'outro' && item.customPhaseKind
+                                                                ? item.customPhaseKind
+                                                                : (phaseKindLabels[item.phaseKind] || item.phaseKind)}
+                                                        </span>
+                                                    )}
+                                                </div>
                                                 <h3 className="text-base font-bold text-gray-900 group-hover:text-uece-green transition-colors">
                                                     {item.title}
                                                 </h3>

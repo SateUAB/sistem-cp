@@ -28,13 +28,17 @@ export const DataProvider = ({ children }) => {
         subscriptionEndDate,
         endDate,
         timeline[] {
-        date,
+            date,
             title,
             "type": "pdf",
-                isFeatured,
-                "url": fileUrl
-    }
-} `;
+            isFeatured,
+            "url": fileUrl,
+            documentType,
+            customDocumentType,
+            phaseKind,
+            customPhaseKind
+        }
+    } `;
         const data = await client.fetch(query);
         setCalls(data);
       } catch (error) {
