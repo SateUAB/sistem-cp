@@ -271,15 +271,6 @@ const Details = () => {
                                     </div>
                                 </div>
 
-                                {call.endDate && (
-                                    <div className="flex items-start gap-3">
-                                        <Calendar className="w-5 h-5 text-uece-green mt-0.5" />
-                                        <div>
-                                            <p className="text-sm text-gray-500">Fim da Chamada Pública</p>
-                                            <p className="font-medium text-gray-900">{call.endDate}</p>
-                                        </div>
-                                    </div>
-                                )}
                             </div>
 
                             {/* Action Buttons */}

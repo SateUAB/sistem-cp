@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Briefcase, BookOpen, Users, GraduationCap, Calendar, ArrowRight, ExternalLink } from 'lucide-react';
+import { Search, Filter, Briefcase, BookOpen, Users, GraduationCap, ArrowRight, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -195,26 +195,9 @@ const Dashboard = () => {
                                     <p className="text-sm font-medium text-gray-900 mb-3">
                                         {call.title}
                                     </p>
-                                    <p className="text-sm text-gray-500 line-clamp-2 mb-3 flex-grow">
+                                    <p className="text-sm text-gray-500 line-clamp-2 mb-4 flex-grow">
                                         {call.description}
                                     </p>
-
-                                    {(call.startDate || call.subscriptionEndDate || call.endDate) && (
-                                        <div className="flex items-center gap-1.5 text-xs text-gray-500 mb-4 bg-gray-50 px-2.5 py-1.5 rounded-lg border border-gray-100">
-                                            <Calendar className="w-3.5 h-3.5 text-uece-green shrink-0" />
-                                            <span>
-                                                Inscrições: <strong className="text-gray-700 font-semibold">
-                                                    {call.startDate && call.subscriptionEndDate
-                                                        ? `${call.startDate} até ${call.subscriptionEndDate}`
-                                                        : call.subscriptionEndDate
-                                                        ? `Até ${call.subscriptionEndDate}`
-                                                        : call.startDate && call.endDate
-                                                        ? `${call.startDate} até ${call.endDate}`
-                                                        : (call.startDate || call.endDate || 'A definir')}
-                                                </strong>
-                                            </span>
-                                        </div>
-                                    )}
 
                                     <div className="flex items-center justify-between mt-auto gap-4">
                                         <div className="flex items-center text-uece-green font-medium text-sm group-hover:underline">
