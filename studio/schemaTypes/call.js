@@ -99,6 +99,13 @@ export const call = {
             description: 'Data de término da Chamada Pública / encerramento do processo. Ex: 30/10/2025'
         },
         {
+            name: 'schedule',
+            title: 'Cronograma',
+            description: 'Datas e períodos previstos, conforme o edital ou o adendo mais recente. Ao alterar uma data aqui, o site e a agenda dos candidatos são atualizados automaticamente.',
+            type: 'array',
+            of: [{ type: 'scheduleItem' }]
+        },
+        {
             name: 'timeline',
             title: 'Resultados e Fases',
             type: 'array',
