@@ -3,10 +3,18 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Users, DollarSign, FileText, Download, CheckCircle, Circle, Briefcase, ExternalLink, AlertTriangle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useData } from '../context/DataContext';
+import ScheduleCard from '../components/schedule/ScheduleCard';
+import ScheduleSamplePreview from '../components/schedule/ScheduleSamplePreview';
+import { useMediaQuery } from '../utils/useMediaQuery';
+
+// The edital is the only highlighted document: it goes right below the text of the call
+const isEdital = (post) => post.title?.trim().toLowerCase() === 'edital';
 
 const Details = () => {
     const { id } = useParams();
     const { calls } = useData();
+    // Same breakpoint as the two-column layout (Tailwind `lg`)
+    const isDesktop = useMediaQuery('(min-width: 1024px)');
     const decodedId = decodeURIComponent(id);
     const call = calls.find(c => c.id === decodedId);
 
@@ -23,29 +31,10 @@ const Details = () => {
     const steps = ['Publicado', 'Período de Inscrição', 'Em Processo', 'Encerrado'];
     const currentStepIndex = steps.indexOf(call.status) !== -1 ? steps.indexOf(call.status) : 0; // Simplified logic for demo
 
-    const documentTypeLabels = {
-        'edital': 'Edital',
-        'adendo': 'Adendo',
-        'retificacao': 'Retificação',
-        'comunicado': 'Comunicado',
-        'convocacao': 'Convocação',
-        'cronograma': 'Cronograma',
-        'resultado-preliminar': 'Resultado Preliminar',
-        'resultado-definitivo': 'Resultado Definitivo',
-        'resultado-final': 'Resultado Final',
-        'outro': 'Outro'
-    };
-
-    const phaseKindLabels = {
-        'inscricao': 'Inscrição',
-        'heteroidentificacao': 'Heteroidentificação',
-        'analise_titulos': 'Análise de Currículo/Títulos',
-        'prova_online': 'Prova Online',
-        'entrevista': 'Entrevista',
-        'curso_formacao_ead': 'Curso EaD',
-        'final': 'Final',
-        'outro': 'Outro'
-    };
+    // The `schedule` field does not exist in Sanity yet: in dev, a sample stands in so the UI can be tested
+    const scheduleCard = call.schedule?.length
+        ? <ScheduleCard call={call} schedule={call.schedule} />
+        : import.meta.env.DEV && <ScheduleSamplePreview call={call} />;
 
     return (
         <div className="min-h-screen bg-gray-50 pb-4">
@@ -57,8 +46,8 @@ const Details = () => {
                         Voltar para Editais
                     </Link>
 
-                    <div className="flex flex-col md:flex-row justify-between items-start gap-6">
-                        <div>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                        <div className="lg:col-span-2">
                             <div className="flex items-center gap-3 mb-3">
                                 <span className="bg-uece-green text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wide">
                                     Chamada Pública {call.id}
@@ -67,176 +56,38 @@ const Details = () => {
                             </div>
                             <h1 className="text-2xl font-bold text-gray-900 mb-4">{call.title}</h1>
                             <p className="text-base text-gray-600 max-w-3xl whitespace-pre-wrap leading-relaxed text-justify">{call.description}</p>
-                        </div>
-                    </div>
 
-                    {/* Status Bar */}
-                    <div className="mt-10 overflow-x-auto pb-4">
-                        <div className="flex items-center min-w-[600px] justify-between relative">
-                            {/* Progress Line */}
-                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 -z-10"></div>
-                            <div
-                                className="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-uece-green -z-10 transition-all duration-500"
-                                style={{ width: `${(currentStepIndex / (steps.length - 1)) * 100}%` }}
-                            ></div>
-
-                            {steps.map((step, index) => {
-                                const isCompleted = index <= currentStepIndex;
-                                const isCurrent = index === currentStepIndex;
-
-                                return (
-                                    <div key={index} className="flex flex-col items-center gap-2 bg-white px-2">
-                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${isCompleted ? 'bg-uece-green border-uece-green text-white' : 'bg-white border-gray-300 text-gray-300'
-                                            }`}>
-                                            {isCompleted ? <CheckCircle className="w-5 h-5" /> : <Circle className="w-5 h-5" />}
-                                        </div>
-                                        <span className={`text-sm font-medium ${isCurrent ? 'text-uece-green' : 'text-gray-500'}`}>
-                                            {step}
-                                        </span>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            {/* Main Grid Layout */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-
-                {/* LEFT COLUMN: Main Content */}
-                <div className="lg:col-span-2">
-
-                    {/* Featured Documents Section */}
-                    {call.timeline.some(t => t.isFeatured) && (
-                        <div className="mb-10">
-                            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                                <FileText className="w-5 h-5 text-uece-green" />
-                                Documentos em Destaque
-                            </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {call.timeline.filter(t => t.isFeatured).map((item, index) => (
-                                    <motion.div
-                                        key={`featured-${index}`}
-                                        initial={{ opacity: 0, y: 10 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        className="bg-green-50 rounded-xl border border-green-100 p-5 shadow-sm hover:shadow-md transition-all group"
-                                    >
-                                        <div className="flex justify-between items-start mb-3">
-                                            <div className="bg-white p-2 rounded-lg text-uece-green shadow-sm group-hover:scale-105 transition-transform">
-                                                <FileText className="w-6 h-6" />
-                                            </div>
-                                            <span className="text-xs font-semibold text-uece-green bg-white px-2 py-1 rounded border border-green-100">
-                                                Destaque
-                                            </span>
-                                        </div>
-                                        <h3 className="text-base font-bold text-gray-900 mb-1">{item.title}</h3>
-                                        <p className="text-xs text-gray-500 mb-4">Publicado em: {item.date}</p>
-                                        <a
-                                            href={item.url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-uece-green text-white rounded-lg hover:bg-green-800 transition-colors text-sm font-medium shadow-sm"
-                                        >
-                                            <Download className="w-4 h-4" />
-                                            Baixar Documento
-                                        </a>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Warning Box */}
-
-
-                    {/* Description */}
-
-
-                    {/* Timeline */}
-                    <div className="pt-8 mb-12 border-t border-gray-100">
-                        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                            <Calendar className="w-5 h-5 text-uece-green" />
-                            Resultados e Fases
-                        </h2>
-
-                        <div className="relative border-l border-gray-200 ml-3 space-y-8 pl-10 pb-4">
-                            {call.timeline.filter(t => !t.isFeatured).map((item, index) => (
-                                <motion.div
-                                    key={`timeline-${index}`}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    className="relative group"
+                            {/* Edital */}
+                            {call.timeline.filter(isEdital).map((item, index) => (
+                                <div
+                                    key={`edital-${index}`}
+                                    className="mt-6 max-w-3xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-green-50 rounded-xl border border-green-100 shadow-sm hover:shadow-md transition-all group"
                                 >
-                                    {/* Modern Dot Indicator */}
-                                    <div className="absolute -left-[45px] top-3 h-3 w-3 rounded-full bg-uece-green shadow-[0_0_0_4px_rgba(230,248,235,1)] group-hover:shadow-[0_0_0_6px_rgba(230,248,235,1)] transition-all duration-300"></div>
-
-                                    {/* Minimalist Card */}
+                                    <div className="flex items-center gap-3">
+                                        <div className="bg-white p-2 rounded-lg text-uece-green shadow-sm group-hover:scale-105 transition-transform">
+                                            <FileText className="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <h2 className="text-base font-bold text-gray-900 uppercase">{item.title}</h2>
+                                            <p className="text-xs text-gray-500">Publicado em: {item.date}</p>
+                                        </div>
+                                    </div>
                                     <a
                                         href={item.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block bg-white p-5 rounded-xl border border-transparent hover:border-gray-100 hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1"
+                                        className="flex items-center justify-center gap-2 px-5 py-2 bg-uece-green text-white rounded-lg hover:bg-green-800 transition-colors text-sm font-medium shadow-sm"
                                     >
-                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                                            <div>
-                                                <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                                                    <span className="text-xs font-bold text-uece-green uppercase tracking-wide">
-                                                        {item.date}
-                                                    </span>
-                                                    {item.documentType && (
-                                                        <span className={`text-[11px] font-semibold px-2 py-0.5 rounded-full ${
-                                                            item.documentType === 'resultado-preliminar'
-                                                                ? 'bg-amber-100 text-amber-800 border border-amber-200'
-                                                                : item.documentType === 'resultado-definitivo' || item.documentType === 'resultado-final'
-                                                                ? 'bg-green-100 text-green-800 border border-green-200'
-                                                                : item.documentType === 'convocacao'
-                                                                ? 'bg-purple-100 text-purple-800 border border-purple-200'
-                                                                : 'bg-blue-50 text-blue-700 border border-blue-200'
-                                                        }`}>
-                                                            {item.documentType === 'outro' && item.customDocumentType
-                                                                ? item.customDocumentType
-                                                                : (documentTypeLabels[item.documentType] || item.documentType)}
-                                                        </span>
-                                                    )}
-                                                    {item.phaseKind && (
-                                                        <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 border border-gray-200">
-                                                            {item.phaseKind === 'outro' && item.customPhaseKind
-                                                                ? item.customPhaseKind
-                                                                : (phaseKindLabels[item.phaseKind] || item.phaseKind)}
-                                                        </span>
-                                                    )}
-                                                </div>
-                                                <h3 className="text-base font-bold text-gray-900 group-hover:text-uece-green transition-colors">
-                                                    {item.title}
-                                                </h3>
-                                            </div>
-
-                                            <div className="flex items-center gap-2 text-gray-400 group-hover:text-uece-green transition-colors text-sm font-medium shrink-0">
-                                                <span>Baixar PDF</span>
-                                                <div className="p-2 rounded-full bg-gray-50 group-hover:bg-green-50 transition-colors">
-                                                    <Download className="w-5 h-5" />
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <Download className="w-4 h-4" />
+                                        Baixar Edital
                                     </a>
-                                </motion.div>
+                                </div>
                             ))}
                         </div>
-                    </div>
 
-
-                </div>
-
-                {/* RIGHT COLUMN: Sidebar */}
-                <div className="lg:col-span-1">
-                    <div className="lg:sticky lg:top-6 space-y-6">
                         {/* Info Card */}
-                        <div className="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                            <h3 className="font-semibold text-gray-900 mb-4 border-b border-gray-100 pb-2">Informações Gerais</h3>
+                        <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
+                            <h3 className="font-semibold text-gray-900 mb-4 border-b border-gray-200 pb-2">Informações Gerais</h3>
 
                             <div className="space-y-4">
                                 <div className="flex items-start gap-3">
@@ -329,6 +180,116 @@ const Details = () => {
                                 )}
                             </div>
                         </div>
+                    </div>
+
+                    {/* Status Bar */}
+                    <div className="mt-10 overflow-x-auto pb-4">
+                        <div className="flex items-center min-w-[600px] justify-between relative">
+                            {/* Progress Line */}
+                            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-1 bg-gray-200 -z-10"></div>
+                            <div
+                                className="absolute left-0 top-1/2 -translate-y-1/2 h-1 bg-uece-green -z-10 transition-all duration-500"
+                                style={{ width: `${(currentStepIndex / (steps.length - 1)) * 100}%` }}
+                            ></div>
+
+                            {steps.map((step, index) => {
+                                const isCompleted = index <= currentStepIndex;
+                                const isCurrent = index === currentStepIndex;
+
+                                return (
+                                    <div key={index} className="flex flex-col items-center gap-2 bg-white px-2">
+                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${isCompleted ? 'bg-uece-green border-uece-green text-white' : 'bg-white border-gray-300 text-gray-300'
+                                            }`}>
+                                            {isCompleted ? <CheckCircle className="w-5 h-5" /> : <Circle className="w-5 h-5" />}
+                                        </div>
+                                        <span className={`text-sm font-medium ${isCurrent ? 'text-uece-green' : 'text-gray-500'}`}>
+                                            {step}
+                                        </span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            {/* Main Grid Layout */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+                {/* LEFT COLUMN: Main Content */}
+                <div className="lg:col-span-2">
+
+                    {/* Schedule: on small screens there is no right column, so it comes before the results */}
+                    {!isDesktop && scheduleCard && (
+                        <div className="mb-10 space-y-4">{scheduleCard}</div>
+                    )}
+
+                    {/* Warning Box */}
+
+
+                    {/* Description */}
+
+
+                    {/* Timeline */}
+                    <div className="mb-12">
+                        <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                            <Calendar className="w-5 h-5 text-uece-green" />
+                            Resultados e Fases
+                        </h2>
+
+                        <div className="relative border-l border-gray-200 ml-3 space-y-8 pl-10 pb-4">
+                            {call.timeline.filter(t => !isEdital(t)).map((item, index) => (
+                                <motion.div
+                                    key={`timeline-${index}`}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="relative group"
+                                >
+                                    {/* Modern Dot Indicator */}
+                                    <div className="absolute -left-[45px] top-3 h-3 w-3 rounded-full bg-uece-green shadow-[0_0_0_4px_rgba(230,248,235,1)] group-hover:shadow-[0_0_0_6px_rgba(230,248,235,1)] transition-all duration-300"></div>
+
+                                    {/* Minimalist Card */}
+                                    <a
+                                        href={item.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block bg-white p-5 rounded-xl border border-transparent hover:border-gray-100 hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1"
+                                    >
+                                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                            <div>
+                                                <span className="block text-xs font-bold text-uece-green uppercase tracking-wide mb-1.5">
+                                                    {item.date}
+                                                </span>
+                                                {/* Uppercase keeps old, manual and standard posts looking the same, however they were typed */}
+                                                <h3 className="text-base font-bold text-gray-900 uppercase group-hover:text-uece-green transition-colors">
+                                                    {item.title}
+                                                </h3>
+                                            </div>
+
+                                            <div className="flex items-center gap-2 text-gray-400 group-hover:text-uece-green transition-colors text-sm font-medium shrink-0">
+                                                <span>Baixar PDF</span>
+                                                <div className="p-2 rounded-full bg-gray-50 group-hover:bg-green-50 transition-colors">
+                                                    <Download className="w-5 h-5" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+
+
+                </div>
+
+                {/* RIGHT COLUMN: Sidebar */}
+                <div className="lg:col-span-1">
+                    {/* With the schedule the sidebar is taller than the screen: sticking it would cut off its bottom */}
+                    <div className={`space-y-6 ${scheduleCard ? '' : 'lg:sticky lg:top-6'}`}>
+                        {/* Schedule */}
+                        {isDesktop && scheduleCard}
 
                         {/* Help Box */}
                         {/* Help & Warning Box merged */}

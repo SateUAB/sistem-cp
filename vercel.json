@@ -2,7 +2,7 @@
     "name": "sistem-cp",
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/((?!api/).*)",
             "destination": "/index.html"
         }
     ]

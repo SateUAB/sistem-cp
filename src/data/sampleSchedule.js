@@ -1,0 +1,33 @@
+// Sample schedule used only in development while the `schedule` field does not exist in Sanity.
+// It mirrors the schedule table of a real edital. Publications use the names of the standard list,
+// which is what links them to the posts of the call.
+export const sampleSchedule = [
+    { _key: 'ex01', title: 'Período de inscrições', category: 'prazo', startDate: '2026-08-10', endDate: '2026-08-24' },
+    { _key: 'ex02', title: 'Último dia para pagamento da taxa de inscrição', category: 'prazo', startDate: '2026-08-25' },
+    { _key: 'ex03', title: 'Verificação dos requisitos da inscrição', category: 'etapa', startDate: '2026-08-26', endDate: '2026-08-28' },
+    { _key: 'ex04', title: 'Resultado preliminar das inscrições', category: 'publicacao', startDate: '2026-08-31' },
+    { _key: 'ex05', title: 'Recurso das inscrições', category: 'prazo', startDate: '2026-09-01' },
+    { _key: 'ex06', title: 'Resultado definitivo das inscrições', category: 'publicacao', startDate: '2026-09-02' },
+    { _key: 'ex07', title: 'Análise dos currículos', category: 'etapa', startDate: '2026-09-03', endDate: '2026-09-08' },
+    { _key: 'ex08', title: 'Resultado preliminar da análise de currículo', category: 'publicacao', startDate: '2026-09-09' },
+    { _key: 'ex09', title: 'Recurso da análise dos currículos', category: 'prazo', startDate: '2026-09-10' },
+    { _key: 'ex10', title: 'Resultado definitivo da análise de currículo', category: 'publicacao', startDate: '2026-09-11' },
+    { _key: 'ex11', title: 'Cronograma das entrevistas', category: 'publicacao', startDate: '2026-09-11' },
+    { _key: 'ex12', title: 'Entrevistas', category: 'etapa', startDate: '2026-09-14', endDate: '2026-09-17' },
+    { _key: 'ex13', title: 'Resultado preliminar das entrevistas', category: 'publicacao', startDate: '2026-09-18' },
+    { _key: 'ex14', title: 'Recurso das entrevistas', category: 'prazo', startDate: '2026-09-21' },
+    { _key: 'ex15', title: 'Resultado definitivo das entrevistas', category: 'publicacao', startDate: '2026-09-22' },
+    { _key: 'ex16', title: 'Convocação para o Curso de Formação em EaD', category: 'publicacao', startDate: '2026-09-22' },
+    { _key: 'ex17', title: 'Convocação para a heteroidentificação', category: 'publicacao', startDate: '2026-09-22' },
+    { _key: 'ex18', title: 'Curso de Formação em EaD', category: 'etapa', startDate: '2026-09-23', endDate: '2026-09-28' },
+    { _key: 'ex19', title: 'Heteroidentificação e análise de documentos (PcD e indígenas)', category: 'etapa', startDate: '2026-09-23', endDate: '2026-09-25' },
+    { _key: 'ex20', title: 'Resultado preliminar da heteroidentificação', category: 'publicacao', startDate: '2026-09-28' },
+    { _key: 'ex21', title: 'Resultado preliminar do Curso de Formação em EaD', category: 'publicacao', startDate: '2026-09-29' },
+    { _key: 'ex22', title: 'Recurso da heteroidentificação', category: 'prazo', startDate: '2026-09-29' },
+    { _key: 'ex23', title: 'Recurso do Curso de Formação em EaD', category: 'prazo', startDate: '2026-09-30' },
+    { _key: 'ex24', title: 'Resultado definitivo do Curso de Formação em EaD', category: 'publicacao', startDate: '2026-09-30' },
+    { _key: 'ex25', title: 'Resultado definitivo da heteroidentificação', category: 'publicacao', startDate: '2026-10-01' },
+    { _key: 'ex26', title: 'Resultado final preliminar', category: 'publicacao', startDate: '2026-10-02' },
+    { _key: 'ex27', title: 'Recurso da classificação final', category: 'prazo', startDate: '2026-10-05' },
+    { _key: 'ex28', title: 'Resultado final', category: 'publicacao', startDate: '2026-10-07' }
+];

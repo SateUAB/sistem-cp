@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { client } from '../sanityClient';
+import { postTitle, scheduleItemTitle } from '../utils/postTitle';
 
 const DataContext = createContext();
 
@@ -27,16 +28,19 @@ export const DataProvider = ({ children }) => {
         startDate,
         subscriptionEndDate,
         endDate,
+        schedule[] {
+            _key,
+            "title": ${scheduleItemTitle},
+            category,
+            startDate,
+            endDate
+        },
         timeline[] {
             date,
-            title,
+            "title": ${postTitle},
             "type": "pdf",
-            isFeatured,
             "url": fileUrl,
-            documentType,
-            customDocumentType,
-            phaseKind,
-            customPhaseKind
+            changesSchedule
         }
     } `;
         const data = await client.fetch(query);
