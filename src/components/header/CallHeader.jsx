@@ -4,6 +4,7 @@ import { MotionConfig, motion } from 'framer-motion';
 import { Activity, ArrowLeft, Briefcase, Calendar, Download, FileText, Hash, Link2, ScrollText } from 'lucide-react';
 import ActionButton from './ActionButton';
 import { STEPS, getActions, getHeaderData } from './headerData';
+import { trackEditalDownload } from '../../utils/analytics';
 
 // Same colors as the status of the cards in the Dashboard
 const STATUS_COLORS = {
@@ -165,6 +166,7 @@ const CallHeader = ({ call }) => {
                                         href={item.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        onClick={() => trackEditalDownload({ editalId: call.id, editalTitle: item.title, fileUrl: item.url })}
                                         className="group relative overflow-hidden flex flex-col gap-4 p-5 rounded-2xl bg-gradient-to-br from-uece-green to-green-700 text-white shadow-md hover:shadow-xl transition-shadow duration-300"
                                     >
                                         <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-white/10 transition-transform duration-500 group-hover:scale-125"></div>
@@ -197,7 +199,7 @@ const CallHeader = ({ call }) => {
                                     <motion.section variants={RISE} className={`${TILE} flex-1`}>
                                         <TileHeading icon={<Link2 className="w-5 h-5" />}>Links</TileHeading>
                                         <div className="relative mt-4 flex flex-col gap-3">
-                                            {actions.map(action => <ActionButton key={action.key} action={action} />)}
+                                            {actions.map(action => <ActionButton key={action.key} action={action} callId={call.id} />)}
                                         </div>
                                     </motion.section>
                                 )}

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 import { useData } from '../context/DataContext';
+import { trackCustomEvent } from '../utils/analytics';
 
 const Dashboard = () => {
     const { calls } = useData();
@@ -206,7 +207,10 @@ const Dashboard = () => {
                                         </div>
 
                                         {call.status === 'Período de Inscrição' && (
-                                            <button className="bg-uece-green text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-800 transition-colors shadow-sm hover:shadow-md z-10 relative">
+                                            <button
+                                                onClick={() => trackCustomEvent('clique_card_inscreva_se', { edital_id: String(call.id || '') })}
+                                                className="bg-uece-green text-white text-sm font-semibold px-4 py-2 rounded-lg hover:bg-green-800 transition-colors shadow-sm hover:shadow-md z-10 relative"
+                                            >
                                                 Inscreva-se
                                             </button>
                                         )}

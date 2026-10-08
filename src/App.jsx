@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import Details from './pages/Details';
 
+import { Analytics } from '@vercel/analytics/react';
 import AdminDashboard from './pages/AdminDashboard';
 import CallForm from './pages/CallForm';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/details/:id" element={<Details />} />
         </Routes>
       </Layout>
+      <Analytics />
 
       {/* Chatbot Widget - Global */}
       <div 

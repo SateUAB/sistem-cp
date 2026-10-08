@@ -8,6 +8,7 @@ import { isEdital } from '../components/header/headerData';
 import ScheduleCard from '../components/schedule/ScheduleCard';
 import ScheduleSamplePreview from '../components/schedule/ScheduleSamplePreview';
 import { useMediaQuery } from '../utils/useMediaQuery';
+import { trackDocumentDownload } from '../utils/analytics';
 
 const Details = () => {
     const { id } = useParams();
@@ -76,6 +77,7 @@ const Details = () => {
                                         href={item.url}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        onClick={() => trackDocumentDownload({ editalId: call.id, docTitle: item.title, fileUrl: item.url })}
                                         className="block bg-white p-5 rounded-xl border border-transparent hover:border-gray-100 hover:shadow-lg transition-all duration-300 group-hover:-translate-y-1"
                                     >
                                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
