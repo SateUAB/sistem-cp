@@ -1,0 +1,105 @@
+/* Additions to cp-ui.css (approved CSS, kept untouched) for what the real site needs beyond the prototype:
+   page base, loading and error states, the chatbot, focus rings and the "Etapa" category of the schedule. */
+
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+body { margin: 0; background: #F3F6F5; }
+html.cp-lock { overflow: hidden; }
+
+.cp { min-height: 100vh; }
+.cp img, .cp svg { vertical-align: middle; }
+.cp button { -webkit-tap-highlight-color: transparent; }
+.cp a { -webkit-tap-highlight-color: transparent; }
+
+/* Links inside running text keep an underline */
+.cp p a, .cp .aviso a, .cp .foot a { text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+
+/* Keyboard focus */
+.cp :focus { outline: none; }
+.cp :focus-visible { outline: 2px solid var(--ac); outline-offset: 3px; }
+.cp .cc:focus-visible, .cp .pub:focus-visible, .cp .arq:focus-visible { outline-offset: 4px; }
+.cp .search:focus-within input:focus-visible { outline: none; }
+.cp .cc.k1.hot:focus-visible { outline-color: #075245; }
+
+.cp .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+/* The tabs follow the site header when it shrinks (68px -> 56px) */
+.cp .ab .tabs2 { transition: top .35s cubic-bezier(.2,.8,.2,1); }
+.cp:has(.hdr.sc) .ab .tabs2 { top: 57px; }
+
+/* Schedule category "Etapa" (blue) */
+.cp .bd.et { background: #DCEFFA; color: #0B5478; }
+.cp .ab .ci.et .db b { color: #0B5478; }
+.cp .cd .tt span i.etapa { background: #7FD0F0; }
+
+/* Sections brought into view stop below the header and the menus */
+.cp .ab .ab-sec { scroll-margin-top: 132px; }
+
+/* The full calendar uses the same rows as the page (".ab" scope), without the page bottom space */
+.cp .mdl-b.ab { padding-bottom: 0; }
+
+/* Buttons that cannot be used */
+.cp .btn[aria-disabled="true"] { opacity: .55; cursor: not-allowed; transform: none; box-shadow: none; }
+.cp .btn[aria-disabled="true"]:after { display: none; }
+.cp .ab .acts-note { font-size: 12.5px; color: var(--mut); margin-top: 10px; }
+
+/* "Sobre a chamada": full text of the call, opened in place */
+.cp .ab .more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; padding: 10px 0; min-height: 44px; border: 0; background: none; font: 600 14px Geist, system-ui, sans-serif; color: var(--ac); cursor: pointer; }
+.cp .ab .more:hover { color: #064C40; }
+.cp .ab .more svg { transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.cp .ab .more[aria-expanded="true"] svg { transform: rotate(180deg); }
+.cp .ab .full-txt { margin-top: 6px; padding: 18px 0 0; border-top: 1px dashed rgba(12,31,26,.15); font-size: 15px; line-height: 1.7; color: #2A3C37; white-space: pre-wrap; max-width: 980px; animation: cpRise .45s cubic-bezier(.2,.8,.2,1) both; }
+
+/* "Ajuda": place and date of the edital, under the signatures */
+.cp .ab .sig { margin-top: 26px; font-size: 14px; color: var(--mut); font-style: italic; }
+
+/* Loading */
+@keyframes cpShimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+.cp .ld { background: linear-gradient(90deg, rgba(12,31,26,.05) 25%, rgba(12,31,26,.09) 50%, rgba(12,31,26,.05) 75%); background-size: 200% 100%; animation: cpShimmer 1.4s linear infinite; border-radius: 10px; }
+.cp .cc.ld-card { cursor: default; pointer-events: none; }
+.cp .cc.ld-card .ld { display: block; }
+.cp .msg { padding: 56px 0; max-width: 620px; }
+.cp .msg h1 { font-size: clamp(30px, 4vw, 48px); line-height: 1.05; letter-spacing: -.04em; font-weight: 650; margin: 10px 0 12px; }
+.cp .msg p { font-size: 16px; color: var(--mut); line-height: 1.55; margin-bottom: 22px; }
+
+/* Empty publications list */
+.cp .ab .pubs-empty { padding: 28px 0; font-size: 16px; color: var(--mut); }
+
+/* Chatbot ("Tire suas dúvidas"): the label folds away while scrolling down and comes back when scrolling up */
+/* The widget no longer reads the "rotulo-botao" slot, so its text would show as loose text at the end of the page */
+.cp-chat [slot="rotulo-botao"] { display: none; }
+.cp-chat .cp-label-bob { transition: opacity .3s ease, translate .4s cubic-bezier(.2,.8,.2,1); }
+.cp-chat.min .cp-label-bob { opacity: 0; translate: 14px 0; }
+.cp-chat.min:hover .cp-label-bob, .cp-chat.min:focus-within .cp-label-bob { opacity: 1; translate: 0 0; }
+@media (prefers-reduced-motion: reduce) {
+  .cp-chat .cp-label-bob { transition: none; }
+}
+
+/* Header 1+3 stacks on narrow screens (number on top, line below). In cp-ui.css a later rule that sets the
+   two columns overrides the 980px media query, so it is restated here, after it. */
+@media (max-width: 980px) {
+  .cp .hx5 { grid-template-columns: minmax(0, 1fr); }
+  .cp .hx5-l { border-right: 0; padding-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 22px; margin-bottom: 22px; }
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .cp .ab .tabs2 { gap: 0; }
+  .cp .ab .tabs2 button { margin-right: 10px; padding: 0 2px; font-size: 14px !important; }
+  .cp .ab .tabs2 button:last-of-type { margin-right: 0; }
+  .cp .ab .tabs2 button span { margin-left: 4px; }
+  .cp .hx5-n { font-size: clamp(84px, 26vw, 120px); }
+  .cp .ab .acts2 .btn, .cp .ab .cact2 .btn { flex: 1 1 100%; }
+  .cp .ab .hx5-r h1 { font-size: clamp(30px, 8.4vw, 40px); }
+  .cp .tools { padding: 12px; }
+  .cp .seg { width: 100%; }
+  .cp .seg .chip { flex: 1 1 auto; }
+  .cp .ab .tips2 li { font-size: 16px; }
+  .cp .ab .dl2 dd { font-size: 17px; }
+}
+@media (max-width: 420px) {
+  .cp .grid, .cp.full .grid { grid-template-columns: minmax(0, 1fr); }
+  .cp .counts span { min-height: 36px; padding: 0 12px; font-size: 13px; }
+}

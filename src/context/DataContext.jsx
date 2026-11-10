@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useCallback, useContext, useState, useEffect } from 'react';
 import { client } from '../sanityClient';
 import { postTitle, scheduleItemTitle } from '../utils/postTitle';
 
@@ -10,14 +10,19 @@ export const useData = () => useContext(DataContext);
 export const DataProvider = ({ children }) => {
   const [calls, setCalls] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchCalls = async () => {
+  // `shortTitle`, `summary` and `linkedPostKey` are optional: the site works without them (see src/utils/cp)
+  const fetchCalls = useCallback(async () => {
+      setLoading(true);
+      setError(null);
       try {
         // Simple query to fetch calls
         const query = `* [_type == "call"] | order(publicationDate desc) {
     "id": editalNumber,
         title,
+        shortTitle,
+        summary,
         description,
         type,
         courseType,
@@ -33,9 +38,11 @@ export const DataProvider = ({ children }) => {
             "title": ${scheduleItemTitle},
             category,
             startDate,
-            endDate
+            endDate,
+            linkedPostKey
         },
         timeline[] {
+            _key,
             date,
             "title": ${postTitle},
             "type": "pdf",
@@ -45,15 +52,17 @@ export const DataProvider = ({ children }) => {
     } `;
         const data = await client.fetch(query);
         setCalls(data);
-      } catch (error) {
-        console.error("Failed to fetch calls from Sanity:", error);
+      } catch (fetchError) {
+        console.error("Failed to fetch calls from Sanity:", fetchError);
+        setError(fetchError);
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchCalls();
   }, []);
+
+  useEffect(() => {
+    fetchCalls();
+  }, [fetchCalls]);
 
   // Admin functions now need to interact with Sanity (omitted for now as we focus on fetch)
   // Real implementation would use client.create / client.patch
@@ -70,7 +79,7 @@ export const DataProvider = ({ children }) => {
   }
 
   return (
-    <DataContext.Provider value={{ calls, loading, addCall, updateCall, deleteCall }}>
+    <DataContext.Provider value={{ calls, loading, error, reload: fetchCalls, addCall, updateCall, deleteCall }}>
       {children}
     </DataContext.Provider>
   );

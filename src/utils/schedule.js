@@ -142,7 +142,7 @@ const toISODate = (date) => (date || '').split('/').reverse().join('-');
 // by hand before the standard ("CRONOGRAMA DE ENTREVISTAS") still find their item ("Cronograma das entrevistas").
 const LINKING_WORDS = new Set(['a', 'o', 'as', 'os', 'de', 'da', 'do', 'das', 'dos', 'em', 'para', '-']);
 
-const getMatchKey = (name) => (name || '')
+export const getMatchKey = (name) => (name || '')
     .toLowerCase()
     .replace(/^\s*retificado\s*-\s*/, '')
     .replace(/\s*-\s*(retificado|corrigido)\s*$/, '')

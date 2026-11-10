@@ -1,11 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap');
-
+/* The new look is plain CSS (src/styles). Tailwind stays for the admin screens, without its reset
+   (preflight is off in tailwind.config.js), so the public pages render exactly like the approved prototype. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  body {
-    @apply antialiased text-gray-900 bg-gray-50 font-sans;
-  }
-}

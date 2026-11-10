@@ -1,43 +1,32 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
-import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-import Details from './pages/Details';
-
+import { Routes, Route } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
-import AdminDashboard from './pages/AdminDashboard';
-import CallForm from './pages/CallForm';
-import ProtectedRoute from './components/ProtectedRoute';
+import HomePage from './pages/HomePage';
+import CallPage from './pages/CallPage';
+import NavProvider from './components/cp/NavProvider';
+import { BackToTop, ChatWidget, ScrollProgress, SiteHeader } from './components/cp/Shell';
 
 function App() {
-  const location = useLocation();
-  const isDetailsPage = location.pathname.startsWith('/details/');
-  let editalId = '';
-  if (isDetailsPage) {
-    editalId = decodeURIComponent(location.pathname.replace('/details/', ''));
-  }
-
   return (
     <>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/details/:id" element={<Details />} />
-        </Routes>
-      </Layout>
+      <div className="cp full">
+        <NavProvider>
+          <ScrollProgress />
+          <SiteHeader />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/details/:id" element={<CallPage />} />
+            <Route path="*" element={<HomePage />} />
+          </Routes>
+          <BackToTop />
+          {/* Dialogs render here, outside the animated sections (a transform would break position: fixed) */}
+          <div id="cp-layer" />
+        </NavProvider>
+      </div>
       <Analytics />
 
       {/* Chatbot Widget - Global */}
-      <div 
-        dangerouslySetInnerHTML={{
-          __html: `<chamadas-publicas-widget 
-            api-base="https://chatbot-cp-alpha.vercel.app/api/v1"
-            edital="${editalId}"
-          >
-            <span slot="rotulo-botao" style="position: relative; top: 2px;">Tire suas dúvidas</span>
-          </chamadas-publicas-widget>`
-        }} 
-      />
+      <ChatWidget />
     </>
   );
 }
