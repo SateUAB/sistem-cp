@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ArrowLeft } from '../components/cp/icons';
 import { prefersReducedMotion, scrollInstant, useNav } from '../components/cp/navigation';
 import CallHeader from '../components/cp/call/CallHeader';
+import CallNotice from '../components/cp/call/CallNotice';
 import ResumoTab from '../components/cp/call/ResumoTab';
 import CronogramaTab from '../components/cp/call/CronogramaTab';
 import PublicacoesTab from '../components/cp/call/PublicacoesTab';
@@ -188,6 +189,7 @@ const CallPage = () => {
     return (
         <div className={`wrap dv ab s-colunas ${nav.enterClass}`.trim()} key={call.id}>
             <BackLink />
+            <CallNotice key={call.aviso?.signature} call={call} />
             <CallHeader call={call} />
             <CallTabs call={call} crono={crono} today={today} />
         </div>

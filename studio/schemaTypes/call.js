@@ -99,6 +99,12 @@ export const call = {
             description: 'Data de término da Chamada Pública / encerramento do processo. Ex: 30/10/2025'
         },
         {
+            name: 'notice',
+            title: 'Aviso em pop-up',
+            description: 'Mensagem que aparece em destaque, em pop-up, quando o candidato abre esta chamada. Use para avisar de problemas ou mudanças importantes.',
+            type: 'notice'
+        },
+        {
             name: 'schedule',
             title: 'Cronograma',
             description: 'Datas e períodos previstos, conforme o edital ou o adendo mais recente. Ao alterar uma data aqui, o site e a agenda dos candidatos são atualizados automaticamente.',

@@ -33,6 +33,11 @@ export const DataProvider = ({ children }) => {
         startDate,
         subscriptionEndDate,
         endDate,
+        notice {
+            active,
+            title,
+            body
+        },
         schedule[] {
             _key,
             "title": ${scheduleItemTitle},

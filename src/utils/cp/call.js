@@ -21,8 +21,24 @@ import { KIND_ORDER, extractSummary, normalizeTitle, publicationKind, shortenTit
  * @property {string} [startDate]                dd/mm/aaaa
  * @property {string} [subscriptionEndDate]      dd/mm/aaaa
  * @property {string} [endDate]                  dd/mm/aaaa
+ * @property {RawNotice | null} [notice]          optional field: pop-up warning for the candidate
  * @property {RawScheduleItem[] | null} [schedule]
  * @property {RawPost[] | null} [timeline]
+ */
+
+/**
+ * Portable Text as saved by Sanity (only paragraphs, lists, bold, italic, underline and links).
+ * @typedef {Object} RawNotice
+ * @property {boolean} [active]
+ * @property {string} [title]
+ * @property {any[] | null} [body]
+ */
+
+/**
+ * @typedef {Object} Notice
+ * @property {string} title
+ * @property {any[]} body
+ * @property {string} signature   changes whenever the text changes, so a visitor who closed the old text sees the new one
  */
 
 /**
@@ -110,6 +126,7 @@ import { KIND_ORDER, extractSummary, normalizeTitle, publicationKind, shortenTit
  * @property {Doc[]} docsRev      most recent first
  * @property {number} nDocs
  * @property {number} mudancas    adendos and posts that changed the schedule
+ * @property {Notice | null} aviso   pop-up warning, only when switched on and with text
  * @property {Doc | null} ultimo
  * @property {Doc | null} edital
  * @property {Doc[]} adendos      most recent first
@@ -139,6 +156,24 @@ const stableSort = (list, key) => list
     .map((item, index) => ({ item, index }))
     .sort((a, b) => key(a.item).localeCompare(key(b.item)) || a.index - b.index)
     .map(({ item }) => item);
+
+const blockText = (block) => (Array.isArray(block?.children) ? block.children.map(child => child?.text || '').join('') : '');
+
+/** Small stable hash (djb2) @param {string} text */
+const hashText = (text) => {
+    let hash = 5381;
+    for (let i = 0; i < text.length; i += 1) hash = ((hash * 33) ^ text.charCodeAt(i)) >>> 0;
+    return hash.toString(36);
+};
+
+/** @param {RawNotice | null | undefined} raw @returns {Notice | null} */
+const toNotice = (raw) => {
+    if (!raw?.active) return null;
+    const body = (Array.isArray(raw.body) ? raw.body : []).filter(block => block?._type === 'block' && blockText(block).trim());
+    if (!body.length) return null;
+    const title = (raw.title || '').trim() || 'Aviso importante';
+    return { title, body, signature: hashText(JSON.stringify([title, body])) };
+};
 
 /** @param {string} callId @returns {(post: RawPost, index: number) => Doc} */
 const toDoc = (callId) => (post, index) => {
@@ -264,6 +299,7 @@ export const buildCall = (raw, today) => {
         ultimo: docs[docs.length - 1] || null,
         edital: docs.find(doc => doc.tipo === 'Edital') || null,
         adendos,
+        aviso: toNotice(raw.notice),
         resultadoFinal: docsRev.find(doc => /resultado final/i.test(doc.titulo) && !/preliminar/i.test(doc.titulo)) || null,
         agenda,
         temAgenda: agenda.length > 0,
